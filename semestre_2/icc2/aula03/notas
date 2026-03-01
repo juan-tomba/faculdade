@@ -1,0 +1,100 @@
+### 2.1 Conceito de Algoritmo
+- Sequência de instruções **bem definidas**.
+- Recebe **entrada(s)** → produz **saída(s)**.
+- Deve **terminar** e ser **correto**.
+- Eficiência depende **tanto do algoritmo** quanto do hardware.
+
+---
+
+### 2.2 Medição de Desempenho
+- Avaliar **tempo** e **memória** necessários.
+- Contar operações → métrica independente de máquina ou linguagem.
+- **n**: tamanho da entrada.
+- Algoritmo eficiente → **menos operações**.
+
+---
+
+### 2.3 Comparação Correta
+- Comparar **algoritmos**, não implementações.
+- Evitar influências de:
+  - Hardware.
+  - Linguagem (compilada vs. interpretada).
+  - Nível de otimização.
+  - Tamanho do problema.
+
+---
+
+### 2.4 Eficiência e Crescimento
+- Mais entradas → mais tempo.
+- Medir custo em função de `n`.
+- Contar operações relevantes para resolução.
+- Tempo de cada operação → considerado constante.
+
+---
+
+### 2.5 Exemplo TripleX vs. SimpleX
+- TripleX: `f(n) = n² + n`.
+- SimpleX: `g(n) = 1000n`.
+- Para `n` pequeno → diferença não é relevante.
+- Para `n` grande → `g(n)` cresce mais devagar.
+
+---
+
+### 2.6 Análise Assintótica
+- Avalia eficiência para **n grande**.
+- Usa taxa de crescimento:
+  - Menor taxa → mais rápido para grandes entradas.
+- Pode ser usada também para memória (menos comum).
+
+---
+
+### 2.7 Revisão Matemática
+
+**Potências:**
+- `xᵃ xᵇ = xᵃ⁺ᵇ`
+- `xᵃ / xᵇ = xᵃ⁻ᵇ`
+- `(xᵃ)ᵇ = xᵃᵇ`
+- `xⁿ + xⁿ = 2xⁿ` (≠ `x²ⁿ`)
+
+**Logaritmos (base 2 se não dito):**
+- `xᵃ = b ⇔ logₓ b = a`
+- `log a + log b = log(ab)`
+- `log a - log b = log(a/b)`
+- `log(ab) = b log a`
+- `log x < x`, ∀ x > 0.
+- Valores úteis:
+  - `log 1 = 0`
+  - `log 2 = 1`
+  - `log 1024 = 10`
+  - `log 1.048.576 = 20`
+
+**Séries úteis:**
+- `∑(i=1 até n) i = n(n+1)/2`
+- `∑(i=1 até n) aⁱ = (a^(n+1) - a)/(a-1)` (a ≠ 1)
+
+---
+
+### 2.8 Notações Assintóticas
+- **O(f(n))**: crescimento ≤ f(n) (limite superior).
+- **Ω(f(n))**: crescimento ≥ f(n) (limite inferior).
+- **Θ(f(n))**: crescimento igual (limite superior e inferior).
+- **o(f(n))**: crescimento estritamente menor.
+- Constantes e termos menores são ignorados:
+  - `O(2n²)` → `O(n²)`.
+  - `O(n² + n)` → `O(n²)`.
+
+---
+
+### 2.9 Regras de Combinação
+- Se `T₁(n) = O(f(n))` e `T₂(n) = O(g(n))`:
+  - **Soma**: `T₁ + T₂ = O(max(f, g))`.
+  - **Produto**: `T₁ * T₂ = O(f * g)`.
+- Polinômio grau `k` → `Θ(nᵏ)`.
+- `logᵏ n = O(n)` para qualquer `k`.
+
+---
+
+### 2.10 Pior, Médio e Melhor Caso
+- `T_pior(n)`: garante limite para qualquer entrada → mais usado.
+- `T_médio(n)`: útil para casos rotineiros.
+- `T_melhor(n)`: pouco útil na prática.

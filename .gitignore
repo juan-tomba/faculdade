@@ -1,0 +1,8 @@
+# Ignorar vídeos pesados
+*.mp4
+*.mkv
+
+# Ignorar executáveis e arquivos de compilação de C
+*.exe
+*.o
+*.out

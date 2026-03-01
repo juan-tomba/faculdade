@@ -1,0 +1,60 @@
+INSTRUÇÕES DE COMPILAÇÃO E EXECUÇÃO
+-----------------------------------
+
+1. Requisitos
+
+- Sistema operacional: Linux
+- Compilador C: gcc
+- Biblioteca padrão do C (já vem com o gcc)
+- O arquivo fonte deve estar no mesmo diretório:
+    - mais_ordenacao.c
+
+2. Compilação
+
+Abra o terminal na pasta onde está o arquivo `mais_ordenacao.c` e digite:
+
+    gcc mais_ordenacao.c -o mais_ordenacao
+
+
+Se não aparecer nenhuma mensagem de erro, o executável `mais_ordenacao` terá sido criado na mesma pasta.
+
+3. Execução
+
+Ainda no mesmo diretório, execute:
+
+    ./mais_ordenacao
+
+O programa irá:
+- Gerar vetores com tamanhos 100, 1000, 10000 e 100000
+- Ordená-los usando vários algoritmos de ordenação
+- Salvar os resultados (comparações, movimentações e tempo) no arquivo:
+
+    resultados.csv
+
+4. Saída gerada
+
+Após a execução, haverá um arquivo:
+
+    resultados.csv
+
+Ele contém uma linha para cada combinação:
+- algoritmo
+- tipo de vetor (Ordenado, Reverso ou aleatorio_media)
+- tamanho do vetor
+- número de comparações
+- número de movimentações
+- tempo de execução em segundos
+
+Você pode abrir esse arquivo com qualquer ferramenta de visualização de dados.
+
+5. Observações
+
+- Se der erro de “permissão negada” ao executar, rode:
+
+    chmod +x mais_ordenacao
+
+  e depois execute novamente:
+
+    ./mais_ordenacao
+
+- O caso de tamanho 100000 pode demorar um pouco mais para terminar, principalmente para algoritmos mais lentos como Bubble Sort.

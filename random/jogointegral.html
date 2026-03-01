@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jogo de Integrais Imediatas</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet"/>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <style>
+    :root {
+      --bg: #f0f4f8;
+      --fg: #333;
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --danger: #dc3545;
+      --input-bg: #fff;
+      --input-border: #ccc;
+      --btn-hover: rgba(0,123,255,0.8);
+      --overlay-bg: rgba(0,0,0,0.6);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --fg: #e0e0e0;
+        --primary: #0d6efd;
+        --secondary: #adb5bd;
+        --danger: #f03e3e;
+        --input-bg: #1e1e1e;
+        --input-border: #444;
+        --btn-hover: rgba(13,110,253,0.8);
+        --overlay-bg: rgba(0,0,0,0.7);
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow: hidden;
+    }
+    .screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .screen.active { display: flex; }
+    h2 { color: var(--primary); margin-bottom: 16px; }
+    #timer { font-size: 2.5rem; color: var(--danger); }
+    #score { font-size: 2rem; }
+    #question { font-size: 1.4rem; margin: 24px 0 12px; }
+    #feedback {
+      margin-top: 12px;
+      font-style: italic;
+      color: var(--secondary);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    #feedback.show { opacity: 1; }
+    input, button {
+      font-size: 1rem;
+      border-radius: 4px;
+    }
+    input {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin-bottom: 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      color: var(--fg);
+    }
+    button {
+      padding: 10px 16px;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-right: 8px;
+    }
+    button:hover { background: var(--btn-hover); }
+    button.secondary { background: var(--secondary); }
+    table {
+      width: 90%; max-width: 500px;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid var(--input-border);
+      padding: 8px;
+      text-align: center;
+    }
+
+    /* NOVOS ESTILOS - Ajuda / Pausa */
+    .controls {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin: 18px 0;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--overlay-bg);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 20px;
+    }
+    .overlay.show { display: flex; }
+    .modal {
+      width: 100%;
+      max-width: 720px;
+      background: var(--input-bg);
+      color: var(--fg);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-height: 80vh;
+      overflow: auto;
+    }
+    .modal h3 { margin-bottom: 8px; color: var(--primary); }
+    .modal p { margin-bottom: 10px; line-height: 1.4; }
+    .pause-banner {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: none;
+      z-index: 60;
+    }
+    .pause-banner.show { display: block; }
+
+    @media (max-width:600px){
+      .modal { padding: 14px; }
+      .controls { flex-direction:column; gap:8px; }
+    }
+  </style>
+  <script>
+    // === FIREBASE CONFIGURAÇÃO ===
+    const firebaseConfig = {
+        apiKey: "AIzaSyDxxqhTGghjK4XA8BqD2FiG6WCKkaasumM",
+        authDomain: "integralandia.firebaseapp.com",
+        projectId: "integralandia",
+        storageBucket: "integralandia.firebasestorage.app",
+        messagingSenderId: "851828038206",
+        appId: "1:851828038206:web:b6414df3e9cc70d0cb4f6f"
+        };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div id="login" class="screen active">
+    <h2>Informe seu nome de usuário</h2>
+    <input type="text" id="username" placeholder="Seu nome" />
+    <button id="startBtn">Iniciar Jogo</button>
+  </div>
+
+  <!-- JOGO -->
+  <div id="game" class="screen">
+    <div style="display:flex; gap:40px; align-items:center;">
+      <div>Tempo: <span id="timer">60</span>s</div>
+      <div>Pontos: <span id="score">0</span></div>
+    </div>
+
+    <!-- Controles novos: Ajuda + Pausar -->
+    <div class="controls" aria-hidden="false">
+      <button id="helpBtn" class="secondary" type="button" title="Abrir instruções e pausar o tempo">Ajuda</button>
+      <button id="pauseBtn" type="button" title="Pausar/Continuar o jogo">Pausar</button>
+    </div>
+
+    <div id="question"></div>
+    <div id="feedback"></div>
+    <form id="answerForm" style="width:100%; max-width:500px;">
+      <input type="text" id="answer" placeholder="Digite a primitiva" autocomplete="off" required />
+      <div style="margin-top:12px;">
+        <button type="submit">Enviar</button>
+        <button type="button" id="skipBtn" class="secondary">Pular</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- RESULTADO -->
+  <div id="result" class="screen">
+    <h2>Tempo Esgotado!</h2>
+    <p>Sua pontuação: <span id="finalScore"></span></p>
+    <button id="showRanking">Ver Ranking</button>
+  </div>
+
+  <!-- RANKING -->
+  <div id="ranking" class="screen">
+    <h2>Ranking de Pontuações</h2>
+    <table>
+      <thead><tr><th>Usuário</th><th>Pontos</th></tr></thead>
+      <tbody id="rankingBody"></tbody>
+    </table>
+    <button id="playAgain">Jogar Novamente</button>
+  </div>
+
+  <!-- OVERLAY AJUDA -->
+  <div id="helpOverlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3>Como jogar</h3>
+      <p>Você verá uma integral apresentada. Digite a primitiva correspondente no campo de resposta e pressione <strong>Enviar</strong>. Cada resposta correta soma 1 ponto.</p>
+      <p>Use <strong>Pular</strong> para ver a resposta correta e seguir para a próxima questão (isso mostrará a resposta por 5s, durante esse tempo a nova integral não aparecerá).</p>
+      <p>Digite as primitivas sem a constante c, ex: ∫ sen(x) dx = -cos(x).</p>
+      <p>Estou trabalhando para minimizar o esforço de escrita visto que o foco são as primitivas em si. Por isso, algumas coisas como -cosx já são aceitas.</p>
+      <p>Fique à vontade para enviar dǘvidas, críticas ou sugestões. Divirta-se e uma boa prova de cálculo!</p>
+      <div style="text-align:right; margin-top:12px;">
+        <button id="closeHelp">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER DE PAUSA -->
+  <div id="pauseBanner" class="pause-banner" aria-hidden="true">Jogo pausado</div>
+
+  <script>
+    let username, score, timeLeft, timerInterval, currentAnswer;
+    let questionsPool = [];
+
+    // Controle de execução do timer
+    let running = false; // se true, o contador decrementa
+    let wasRunningBeforeHelp = false; // salva estado ao abrir ajuda
+
+    // === BLOCO DE INTEGRAIS (edite aqui!) ===
+    const integralsList = [
+        // Polinômios
+        { q: '∫ x^n dx (n ≠ -1)', a: 'x^(n+1)/(n+1)' },
+        { q: '∫ 1 dx', a: 'x' },
+        { q: '∫ x dx', a: 'x^2/2' },
+        { q: '∫ x^2 dx', a: 'x^3/3' },
+        { q: '∫ x^3 dx', a: 'x^4/4' },
+        { q: '∫ x^4 dx', a: 'x^5/5' },
+        { q: '∫ x^5 dx', a: 'x^6/6' },
+
+        // Exponenciais
+        { q: '∫ e^x dx', a: 'e^x' },
+        { q: '∫ a^x dx', a: 'a^x/ln(a)' },
+
+        // Logaritmos
+        { q: '∫ 1/x dx', a: 'ln|x|' },
+
+        // Trigonométricas
+        { q: '∫ sen(x) dx', a: '-cos(x)' },
+        { q: '∫ cos(x) dx', a: 'sen(x)' },
+        { q: '∫ tg(x) dx', a: '-ln|cos(x)|' },
+        { q: '∫ cotg(x) dx', a: 'ln|sen(x)|' },
+        { q: '∫ sec(x) dx', a: 'ln|sec(x)+tg(x)|' },
+        { q: '∫ cossec(x) dx', a: '-ln|cossec(x)+cotg(x)|' },
+
+        // Trigonométricas ao quadrado
+        { q: '∫ sen^2(x) dx', a: '(x/2) - (sen(2x)/4)' },
+        { q: '∫ cos^2(x) dx', a: '(x/2) + (sen(2x)/4)' },
+
+        // Produtos trigonométricos usuais
+        { q: '∫ sen(x)cos(x) dx', a: 'sen^2(x)/2' },
+        { q: '∫ sen^2(x)cos(x) dx', a: 'sen^3(x)/3' },
+        { q: '∫ cos^2(x)sen(x) dx', a: '-cos^3(x)/3' },
+
+        // Inversas trigonométricas
+        { q: '∫ 1/sqrt(1-x^2) dx', a: 'arcsen(x)' },
+        { q: '∫ -1/sqrt(1-x^2) dx', a: 'arccos(x)' },
+        { q: '∫ 1/(1+x^2) dx', a: 'arctg(x)' },
+        { q: '∫ -1/(1+x^2) dx', a: 'arccotg(x)' },
+        { q: '∫ 1/|x|sqrt(x^2-1) dx', a: 'arcsec(x)' },
+        { q: '∫ -1/|x|sqrt(x^2-1) dx', a: 'arccossec(x)' },
+
+        // Hiperbólicas
+        { q: '∫ senh(x) dx', a: 'cosh(x)' },
+        { q: '∫ cosh(x) dx', a: 'senh(x)' },
+        { q: '∫ tgh(x) dx', a: 'ln(cosh(x))' },
+        { q: '∫ coth(x) dx', a: 'ln|senh(x)|' },
+        { q: '∫ sech(x) dx', a: 'arctg(senh(x))' },
+        { q: '∫ cosseh(x) dx', a: 'arctg(cosh(x))' }
+    ];
+
+    function initPool() {
+      questionsPool = integralsList.slice(); // clona o array original
+    }
+
+    function normalize(str) {
+      return str.toLowerCase()
+        .replace(/\s+/g, '')
+        .replace(/\*/g, '')
+        .replace(/tg/g, 'tan')
+        .replace(/sen/g, 'sin')
+        .replace(/[()]/g, '');
+    }
+
+    function nextQuestion() {
+      if (!questionsPool.length) initPool();
+      const idx = Math.floor(Math.random() * questionsPool.length);
+      const obj = questionsPool.splice(idx, 1)[0];
+      currentAnswer = obj.a;
+      document.getElementById('question').innerText = obj.q;
+      document.getElementById('answer').value = '';
+      document.getElementById('feedback').classList.remove('show');
+      document.getElementById('answer').focus();
+    }
+
+    function startTimer() {
+      // garante que não tem interval duplicado
+      if (timerInterval) clearInterval(timerInterval);
+      timeLeft = 60;
+      document.getElementById('timer').innerText = timeLeft;
+      running = true;
+      updatePauseUI();
+      timerInterval = setInterval(() => {
+        if (!running) return; // não decrementa se pausado/ajuda
+        timeLeft--;
+        document.getElementById('timer').innerText = timeLeft;
+        if (timeLeft <= 0) endGame();
+      }, 1000);
+    }
+
+    function switchScreen(hideId, showId) {
+      document.getElementById(hideId).classList.remove('active');
+      document.getElementById(showId).classList.add('active');
+    }
+
+    async function saveScore() {
+      try {
+        await db.collection('scores').add({
+          user: username,
+          score: score,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } catch (e) {
+        console.error('Erro ao salvar score:', e);
+      }
+    }
+
+    async function getPlayerRank() {
+        const higherScores = await db.collection('scores')
+            .where('score', '>', score)
+            .get();
+
+        const rank = higherScores.size + 1;
+        alert(`Sua posição no ranking global é: ${rank}`);
+    }
+
+    async function showRanking() {
+      try {
+        const snapshot = await db
+          .collection('scores')
+          .orderBy('score', 'desc')
+          .limit(10)
+          .get();
+        const tbody = document.getElementById('rankingBody');
+        tbody.innerHTML = '';
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          tbody.insertAdjacentHTML(
+            'beforeend',
+            `<tr><td>${data.user}</td><td>${data.score}</td></tr>`
+          );
+        });
+        switchScreen('result','ranking');
+      } catch (e) {
+        console.error('Erro ao buscar ranking:', e);
+      }
+    }
+
+    function endGame() {
+      clearInterval(timerInterval);
+      running = false;
+      document.getElementById('finalScore').innerText = score;
+      switchScreen('game','result');
+      saveScore();
+      getPlayerRank();
+    }
+
+    // Atualiza UI de pausa (texto do botão + banner)
+    function updatePauseUI() {
+      const pauseBtn = document.getElementById('pauseBtn');
+      const banner = document.getElementById('pauseBanner');
+      const questionEl = document.getElementById('question');
+      const answerInput = document.getElementById('answer');
+
+      if (!running) {
+        // Estado PAUSADO
+        pauseBtn.innerText = 'Continuar';
+        banner.classList.add('show');
+        banner.setAttribute('aria-hidden', 'false');
+
+        // Oculta a equação e desabilita o input
+        questionEl.style.visibility = 'hidden';   // mantém o espaço, apenas oculta visualmente
+        answerInput.disabled = true;
+        answerInput.placeholder = 'Jogo pausado';
+      } else {
+        // Estado EXECUTANDO
+        pauseBtn.innerText = 'Pausar';
+        banner.classList.remove('show');
+        banner.setAttribute('aria-hidden', 'true');
+
+        // Mostra a equação e habilita o input
+        questionEl.style.visibility = 'visible';
+        answerInput.disabled = false;
+        answerInput.placeholder = 'Digite a primitiva';
+        // coloca foco de volta para digitar
+        try { answerInput.focus(); } catch(e) {}
+      }
+    }
+
+    function togglePause() {
+      // alterna estado de execução
+      running = !running;
+      updatePauseUI();
+    }
+
+    function openHelp() {
+      // abre modal de ajuda e pausa o tempo (mas guarda se já estava rodando)
+      wasRunningBeforeHelp = running;
+      running = false;
+      updatePauseUI();
+      const overlay = document.getElementById('helpOverlay');
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeHelp() {
+      const overlay = document.getElementById('helpOverlay');
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      // restaura estado anterior (se estava rodando antes de abrir a ajuda)
+      running = !!wasRunningBeforeHelp;
+      updatePauseUI();
+    }
+
+    document.getElementById('startBtn').onclick = () => {
+      username = document.getElementById('username').value.trim() || 'Anônimo';
+      score = 0;
+      document.getElementById('score').innerText = score;
+      initPool();
+      nextQuestion();
+      startTimer();
+      switchScreen('login','game');
+    };
+
+    document.getElementById('answerForm').addEventListener('submit', e => {
+      e.preventDefault();
+      // se jogo está pausado, ignora envio e mostra feedback breve
+      if (!running) {
+        const fb = document.getElementById('feedback');
+        fb.innerText = 'Jogo pausado — retome para enviar respostas.';
+        fb.classList.add('show');
+        setTimeout(() => fb.classList.remove('show'), 1200);
+        return;
+      }
+      const ans = normalize(document.getElementById('answer').value);
+      if (ans === normalize(currentAnswer)) {
+        score++;
+        document.getElementById('score').innerText = score;
+        nextQuestion();
+      }
+    });
+
+    document.getElementById('skipBtn').onclick = () => {
+      if (!running) {
+        const fb = document.getElementById('feedback');
+        fb.innerText = 'Jogo pausado — não é possível pular agora.';
+        fb.classList.add('show');
+        setTimeout(() => fb.classList.remove('show'), 1200);
+        return;
+      }
+      const fb = document.getElementById('feedback');
+      fb.innerText = `Resposta certa: ${currentAnswer}`;
+      fb.classList.add('show');
+      setTimeout(nextQuestion, 5000);
+    };
+
+    // Botões de ajuda / pausa
+    document.getElementById('helpBtn').onclick = openHelp;
+    document.getElementById('closeHelp').onclick = closeHelp;
+    document.getElementById('pauseBtn').onclick = () => {
+      // se o modal de ajuda estiver aberto, fechar ajuda e alternar pausa?
+      // aqui apenas alternamos a pausa normalmente
+      togglePause();
+    };
+
+    document.getElementById('showRanking').onclick = showRanking;
+    document.getElementById('playAgain').onclick = () => {
+      document.getElementById('username').value = '';
+      switchScreen('ranking','login');
+    };
+
+    // Garante que endGame limpa interval se usuário fecha/nenhuma corrida
+    window.addEventListener('beforeunload', () => {
+      if (timerInterval) clearInterval(timerInterval);
+    });
+
+  </script>
+</body>
+</html>

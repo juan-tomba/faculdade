@@ -1,0 +1,19 @@
+|Contador
+q0 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+clk => inst.CLK
+clk => inst2.CLK
+clk => inst3.CLK
+clk => inst4.CLK
+clk => inst5.CLK
+clk => inst6.CLK
+clk => inst7.CLK
+clk => inst8.CLK
+q1 <= inst2.DB_MAX_OUTPUT_PORT_TYPE
+q2 <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+q3 <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+q4 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+q5 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+q6 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+q7 <= inst8.DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,14 @@
+ARQUIVOS ORIGINAIS: racional.h, racional.c e main.c
+
+Para criar: (-c só compila)
+
+    racional.o: gcc -c racional.c
+
+    main.o: gcc -c main.c
+
+
+Agora para "juntar" todos e criar o racional.exe: 
+
+    gcc main.o racional.o -o racional
+
+Agora é so dar ./racional

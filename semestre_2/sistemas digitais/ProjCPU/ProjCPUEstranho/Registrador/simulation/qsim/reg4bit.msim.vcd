@@ -1,0 +1,288 @@
+$comment
+	File created using the following command:
+		vcd file reg4bit.msim.vcd -direction
+$end
+$date
+	Tue Aug 26 15:13:39 2025
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	1ps
+$end
+
+$scope module reg4bit_vlg_vec_tst $end
+$var reg 1 ! CLK $end
+$var reg 1 " D0 $end
+$var reg 1 # D1 $end
+$var reg 1 $ D2 $end
+$var reg 1 % D3 $end
+$var reg 1 & LOAD $end
+$var wire 1 ' Q0 $end
+$var wire 1 ( Q1 $end
+$var wire 1 ) Q2 $end
+$var wire 1 * Q3 $end
+
+$scope module i1 $end
+$var wire 1 + gnd $end
+$var wire 1 , vcc $end
+$var wire 1 - unknown $end
+$var tri1 1 . devclrn $end
+$var tri1 1 / devpor $end
+$var tri1 1 0 devoe $end
+$var wire 1 1 ~QUARTUS_CREATED_GND~I_combout $end
+$var wire 1 2 CLK~input_o $end
+$var wire 1 3 CLK~inputCLKENA0_outclk $end
+$var wire 1 4 D0~input_o $end
+$var wire 1 5 LOAD~input_o $end
+$var wire 1 6 inst~q $end
+$var wire 1 7 D1~input_o $end
+$var wire 1 8 inst1~feeder_combout $end
+$var wire 1 9 inst1~q $end
+$var wire 1 : D2~input_o $end
+$var wire 1 ; inst2~q $end
+$var wire 1 < D3~input_o $end
+$var wire 1 = inst3~q $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+1#
+1$
+1%
+0&
+0'
+0(
+0)
+0*
+0+
+1,
+x-
+1.
+1/
+10
+01
+02
+03
+14
+05
+06
+17
+18
+09
+1:
+0;
+1<
+0=
+$end
+#10637
+0$
+0%
+0:
+0<
+#16032
+0"
+0#
+04
+07
+08
+#457304
+1$
+1%
+1:
+1<
+#500000
+1!
+12
+13
+1=
+1;
+1)
+1*
+#677303
+0$
+0%
+0:
+0<
+#1000000
+0!
+02
+03
+#1123970
+1$
+1%
+1:
+1<
+#1176032
+1"
+1#
+14
+17
+18
+#1343969
+0$
+0%
+0:
+0<
+#1500000
+1!
+12
+13
+0=
+0;
+19
+16
+1'
+1(
+0)
+0*
+#1790636
+1$
+1%
+1:
+1<
+#2000000
+1&
+0!
+15
+02
+03
+#2018129
+0"
+0#
+04
+07
+08
+#2026114
+0$
+0%
+0:
+0<
+#2234796
+1"
+1#
+14
+17
+18
+#2246114
+1$
+1%
+1:
+1<
+#2351462
+0"
+0#
+04
+07
+08
+#2359447
+0$
+0%
+0:
+0<
+#2500000
+1!
+12
+13
+#2568129
+1"
+1#
+14
+17
+18
+#2579447
+1$
+1%
+1:
+1<
+#2684795
+0"
+0#
+04
+07
+08
+#2692780
+0$
+0%
+0:
+0<
+#2901462
+1"
+1#
+14
+17
+18
+#2912780
+1$
+1%
+1:
+1<
+#3000000
+0!
+02
+03
+#3006723
+0$
+0%
+0:
+0<
+#3009662
+0"
+0#
+04
+07
+08
+#3219662
+1"
+1#
+14
+17
+18
+#3336723
+1$
+1%
+1:
+1<
+#3342995
+0"
+0#
+04
+07
+08
+#3500000
+1!
+12
+13
+#3506723
+0$
+0%
+0:
+0<
+#3552995
+1"
+1#
+14
+17
+18
+#3676328
+0"
+0#
+04
+07
+08
+#3836723
+1$
+1%
+1:
+1<
+#3886328
+1"
+1#
+14
+17
+18
+#4000000

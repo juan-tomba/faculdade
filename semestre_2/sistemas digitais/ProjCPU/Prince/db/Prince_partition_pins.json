@@ -1,0 +1,29 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "s",
+					"strict" : false
+				},
+				{
+					"name" : "D",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "input",
+					"strict" : false
+				},
+				{
+					"name" : "clk_fpga",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

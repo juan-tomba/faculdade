@@ -1,0 +1,125 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "igual",
+					"strict" : false
+				},
+				{
+					"name" : "A5",
+					"strict" : false
+				},
+				{
+					"name" : "E5",
+					"strict" : false
+				},
+				{
+					"name" : "C5",
+					"strict" : false
+				},
+				{
+					"name" : "D5",
+					"strict" : false
+				},
+				{
+					"name" : "F5",
+					"strict" : false
+				},
+				{
+					"name" : "G5",
+					"strict" : false
+				},
+				{
+					"name" : "B5",
+					"strict" : false
+				},
+				{
+					"name" : "A3-",
+					"strict" : false
+				},
+				{
+					"name" : "C3",
+					"strict" : false
+				},
+				{
+					"name" : "B3-",
+					"strict" : false
+				},
+				{
+					"name" : "D3",
+					"strict" : false
+				},
+				{
+					"name" : "E3",
+					"strict" : false
+				},
+				{
+					"name" : "F3",
+					"strict" : false
+				},
+				{
+					"name" : "G3",
+					"strict" : false
+				},
+				{
+					"name" : "G5-",
+					"strict" : false
+				},
+				{
+					"name" : "G3-",
+					"strict" : false
+				},
+				{
+					"name" : "maiorA",
+					"strict" : false
+				},
+				{
+					"name" : "maiorB",
+					"strict" : false
+				},
+				{
+					"name" : "H5",
+					"strict" : false
+				},
+				{
+					"name" : "P5",
+					"strict" : false
+				},
+				{
+					"name" : "H2",
+					"strict" : false
+				},
+				{
+					"name" : "H4",
+					"strict" : false
+				},
+				{
+					"name" : "H1",
+					"strict" : false
+				},
+				{
+					"name" : "H3",
+					"strict" : false
+				},
+				{
+					"name" : "P2",
+					"strict" : false
+				},
+				{
+					"name" : "P4",
+					"strict" : false
+				},
+				{
+					"name" : "P1",
+					"strict" : false
+				},
+				{
+					"name" : "P3",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

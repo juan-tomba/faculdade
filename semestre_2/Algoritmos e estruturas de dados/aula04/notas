@@ -1,0 +1,14 @@
+-Resumo Implementação Sequencial
+
+Utiliza vetor estático para armazenar informações da pilha (ex: TAM = 100)
+
+ITEM* pilha_desempilhar(PILHA* pilha)
+    Ponto positivo: Modularizado
+    Ponto Negativo: Chama outra função, entao é mais lento
+
+pilha->item[pilha->tamanho] = item
+
+-Resumo Implementação Dinâmica Encadeada
+
+Utiliza nós
+

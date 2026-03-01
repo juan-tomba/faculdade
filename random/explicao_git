@@ -1,0 +1,30 @@
+# (Exemplo de lab ICC1)
+
+## 1. Criar ou clonar o repositório
+# Se o repositório já existe no GitHub:
+git clone https://github.com/juan-tomba/lab-icc1.git
+cd lab-icc1
+
+# Se o repositório ainda não está vinculado (direto no seu projeto):
+git init
+git remote add origin https://github.com/juan-tomba/lab-icc1.git
+
+## 2. Adicionar alterações
+git add .              # Adiciona todos os arquivos modificados
+
+## 3. Fazer commit
+git commit -m "Mensagem do commit"
+
+## 4. Enviar para o GitHub
+git push -u origin main   # Se o branch for "main"
+# git push -u origin master  # Se o branch for "master"
+
+---------------------------------
+# Outros comandos úteis
+
+git status        # Verifica arquivos modificados e branch atual
+git log --oneline # Lista commits de forma resumida
+git remote -v     # Mostra se o repositório remoto está configurado
+git pull          # coloca arquivos e atualizações na minha maquina)
+
+extra: mate arquivo.c # cria e abre no terminal linux

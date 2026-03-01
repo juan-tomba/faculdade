@@ -1,0 +1,149 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'rst'
+Slack : -3.286
+TNS   : -3.286
+
+Type  : Slow 1100mV 85C Model Setup 'clk_fpga'
+Slack : -3.284
+TNS   : -50.154
+
+Type  : Slow 1100mV 85C Model Hold 'clk_fpga'
+Slack : 0.424
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'rst'
+Slack : 0.783
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'clk_fpga'
+Slack : -2.272
+TNS   : -40.798
+
+Type  : Slow 1100mV 85C Model Removal 'clk_fpga'
+Slack : 1.058
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk_fpga'
+Slack : -0.538
+TNS   : -14.086
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'input'
+Slack : -0.538
+TNS   : -0.778
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'rst'
+Slack : -0.538
+TNS   : -0.773
+
+Type  : Slow 1100mV 0C Model Setup 'clk_fpga'
+Slack : -3.197
+TNS   : -47.992
+
+Type  : Slow 1100mV 0C Model Setup 'rst'
+Slack : -3.186
+TNS   : -3.186
+
+Type  : Slow 1100mV 0C Model Hold 'clk_fpga'
+Slack : 0.437
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'rst'
+Slack : 0.532
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'clk_fpga'
+Slack : -2.107
+TNS   : -37.850
+
+Type  : Slow 1100mV 0C Model Removal 'clk_fpga'
+Slack : 0.898
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk_fpga'
+Slack : -0.538
+TNS   : -14.272
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'rst'
+Slack : -0.538
+TNS   : -0.826
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'input'
+Slack : -0.538
+TNS   : -0.813
+
+Type  : Fast 1100mV 85C Model Setup 'rst'
+Slack : -2.194
+TNS   : -2.194
+
+Type  : Fast 1100mV 85C Model Setup 'clk_fpga'
+Slack : -1.917
+TNS   : -26.290
+
+Type  : Fast 1100mV 85C Model Hold 'clk_fpga'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'rst'
+Slack : 0.426
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'clk_fpga'
+Slack : -1.362
+TNS   : -24.496
+
+Type  : Fast 1100mV 85C Model Removal 'clk_fpga'
+Slack : 0.305
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'rst'
+Slack : -0.233
+TNS   : -0.233
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'input'
+Slack : -0.214
+TNS   : -0.214
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk_fpga'
+Slack : -0.090
+TNS   : -1.608
+
+Type  : Fast 1100mV 0C Model Setup 'rst'
+Slack : -1.970
+TNS   : -1.970
+
+Type  : Fast 1100mV 0C Model Setup 'clk_fpga'
+Slack : -1.719
+TNS   : -23.076
+
+Type  : Fast 1100mV 0C Model Hold 'clk_fpga'
+Slack : 0.069
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'rst'
+Slack : 0.279
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'clk_fpga'
+Slack : -1.173
+TNS   : -21.092
+
+Type  : Fast 1100mV 0C Model Removal 'clk_fpga'
+Slack : 0.197
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'rst'
+Slack : -0.248
+TNS   : -0.248
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'input'
+Slack : -0.235
+TNS   : -0.235
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk_fpga'
+Slack : -0.094
+TNS   : -1.666
+
+------------------------------------------------------------

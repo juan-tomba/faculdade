@@ -1,0 +1,7 @@
+Para abrir vs code pelo wsl:
+    cd /mnt/c/Users/Juan/OneDrive/Desktop/faculdade
+    code.
+
+Iniciar wsl no terminal:
+    Win + x, e vai em terminal
+    wsl.exe -d ubuntu

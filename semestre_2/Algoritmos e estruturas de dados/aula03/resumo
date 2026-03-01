@@ -1,0 +1,57 @@
+# 📑 Resumo – Pilhas (até pág. 24 + notas de aula)
+
+## 1. Conceitos Introdutórios
+- **Pilha**: estrutura linear onde inserções e remoções acontecem no **topo**.  
+- Segue a política **LIFO (Last In, First Out)**.  
+- **Exemplos**:
+  - Pilha de pratos.
+  - Botão *voltar* (navegador).
+  - Comando *undo* (editor).  
+
+### Aplicações em Computação
+- Controle de chamadas de funções.
+- Busca em profundidade (DFS).
+- Avaliação de expressões aritméticas.
+
+---
+
+## 2. Estrutura de Dados (ED)
+- Pilhas armazenam **dados de diferentes tipos**.  
+- Para generalizar, usa-se **TAD ITEM**.
+
+---
+
+## 3. Operações Fundamentais
+**Principais:**
+- `empilhar(P, x)` → insere no topo.
+- `desempilhar(P)` → remove do topo.
+
+**Auxiliares:**
+- `criar(P)`, `apagar(P)`.
+- `topo(P)`, `tamanho(P)`.
+- `vazia(P)`, `cheia(P)` (somente versão sequencial).
+
+---
+
+## 4. Organização de Memória
+- **Estática**: tamanho fixo em compilação.
+- **Dinâmica**: cresce em execução.
+
+|      Organização      |         Exemplos        |
+|-----------------------|-------------------------|
+| Sequencial + Estática | Array fixo              |
+| Sequencial + Dinâmica | Array alocado           |
+| Encadeada + Estática  | Array simulando memória |
+| Encadeada + Dinâmica  | Ponteiros e nós         |
+
+---
+
+## 5. Implementação Sequencial
+- Usa **array fixo**.  
+- Variável `topo` indica posição atual.  
+
+```c
+typedef struct pilha {
+    ITEM* item[TAM];
+    int tamanho; // topo
+} PILHA;
