@@ -56,5 +56,72 @@ Código em C -> compilador -> Assembly -> Assembler -> Linguagem de máquina (bi
 ## 3° Geração
 
 - Criada a 1ª família de computadores
+	- E/S
 - **Introduziu o conceito de multiprogramação**
 	- vários programas ao mesmo tempo na memória
+- 1° minicomputador - 1964
+- Estrutura de barramento
+
+### 4° Geração
+
+- 1° microprocessador - 1971 - 4004
+	- Palavra de 4 bits
+- 1972 - 8008
+	- Palavras de 8 bits
+	- Assim como o 4040, específico para algumas aplicações
+- 1974 - 8080
+	- 1º microprocessador de propósito geral da Intel
+
+### 5° Geração
+
+- 1981 - governo Japonês planeja nova geração 
+	- Baseada em IA.
+	- Fracasso
+- A revolução foi outra: silenciosa
+	- 1989: 1° tablet sensível ao toque
+- Começo de fabricação de **componentes pequenos e potentes**
+
+## Lei de Moore
+
+- Lei proposta por Gordon Moore – co-fundador da Intel
+- **Número de transistores no chip dobrará a cada 18-24 meses**
+- "Os computadores menores são mais flexíveis"
+
+### Projeto de Computadores e Desempenho
+
+- A demanda e as organizações atuais requerem fluxo de execução de instruções constante
+- São empregadas:
+	- inserção de pipelines nos processadores
+	- caches L1 & L2 on board
+
+### Balanço do desempenho
+
+- Capacidade da memória aumentou muito
+- Velocidade do processador aumentou muito
+- Velocidade no acesso à memória cresceu menos que a velocidade do processador
+	- Pode gerar gargalo no desempenho
+
+### Soluções para o desempenho da RAM
+
+- Aumentar nº de bits recebidos por acesso
+	- Tornar DRAM + “larga” em vez de aumentar capacidade
+	- Implica em mudar barramentos
+- Reduzir frequência de acessos à memória
+	- usar estrutura de caches + complexas, tanto na DRAM quanto no processador
+- Aumentar a largura de banda dos barramentos
+	- Mais velozes
+
+### Resumo
+
+- Evolução dos computadores foi marcada por:
+	- maior velocidade dos processadores 
+	- diminuição do tamanho dos componentes 
+	- maior capacidade (densidade) das memórias
+	- maior capacidade e velocidade de E/S
+- Velocidades maiores vêm da diminuição do tamanho
+	- menores distâncias entre os componentes 
+	- ganhos reais de desempenho vêm de mudanças na organização 
+		- pipeline, execução paralela, especulativa e predição de desvios
+- Balanceamento no desempenho dos componentes
+	- Ex.: ganhos na velocidade do processador podem ser prejudicados por atrasos devido à velocidade da memória 
+	- possíveis soluções: cache, barramentos mais largos, entre outras

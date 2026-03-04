@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "26c851461ece28ae",
+            "id": "42c1b44e65959000",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Organização de arquivos/Aula01/Disco (HDD).md",
+                "file": "Organização e Arquitetura de computadores/aula03/Arquitetura de von Neumann.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Disco (HDD)"
+              "title": "Arquitetura de von Neumann"
+            }
+          },
+          {
+            "id": "22b8f093228cf5fe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Organização e Arquitetura de computadores/aula02/Evolução e questões de desempenho.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Evolução e questões de desempenho"
             }
           }
         ]
@@ -78,7 +92,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "a0b7c018f7d2ad2d",
@@ -183,16 +198,25 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "26c851461ece28ae",
+  "active": "42c1b44e65959000",
   "lastOpenFiles": [
+    "Organização e Arquitetura de computadores/aula03/Pasted image 20260304135713.png",
     "Organização e Arquitetura de computadores/aula02/Evolução e questões de desempenho.md",
-    "Organização e Arquitetura de computadores/aula02/Pasted image 20260228160759.png",
+    "Organização e Arquitetura de computadores/aula03/Arquitetura de von Neumann.md",
+    "Organização e Arquitetura de computadores/aula03/Pasted image 20260304132237.png",
     "Organização e Arquitetura de computadores/aula01/Apresentação e introdução da disciplina.md",
+    "Modelagem Computacional em Grafos/aula02/Definições.md",
+    "Organização e Arquitetura de computadores/aula03/Pasted image 20260304131752.png",
+    "Modelagem Computacional em Grafos/aula01/Introdução.md",
+    "Organização e Arquitetura de computadores/aula03/Pasted image 20260303131539.png",
     "Organização de arquivos/Aula01/Disco (HDD).md",
+    "Organização e Arquitetura de computadores/aula03",
+    "Organização de arquivos/Aula02/Organização em campos.md",
+    "Organização de arquivos/Aula02/Revisão.md",
+    "Programação Funcional/aula01/Introdução.md",
+    "Organização e Arquitetura de computadores/aula02/Pasted image 20260228160759.png",
     "Organização de arquivos/Aula01/Pasted image 20260228154022.png",
     "Organização de arquivos/Aula01/Pasted image 20260228152959.png",
-    "Programação Funcional/aula01/Introdução.md",
-    "Modelagem Computacional em Grafos/aula01/Introdução.md",
     "Programação Funcional/aula02",
     "Programação Funcional/aula01",
     "Programação Funcional",
@@ -203,7 +227,6 @@
     "Modelagem Computacional em Grafos",
     "Organização e Arquitetura de computadores/aula02",
     "Organização e Arquitetura de computadores/aula01",
-    "Organização e Arquitetura de computadores",
     "Bem-vindo.md"
   ]
 }

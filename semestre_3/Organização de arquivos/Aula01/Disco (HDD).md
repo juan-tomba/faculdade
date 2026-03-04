@@ -9,6 +9,7 @@ Vida útil do disco - Número de writes do disco
 **Fita magnética**: é um meio de armazenamento sequencial que grava dados magneticamente em uma fita plástica, muito usado para backups e arquivamento.
 
 **Byte of 7 bits**: Era utilizado no ASC II original, 1 byte = 7 bits
+**Byte offset**: É a distância em bytes entre o começo de alguma estrutura de dados e algum ponto específico
 
 SGBD (Sistema Gerenciador de Banco de Dados) - é um software que permite criar, gerenciar, manipular e consultar bancos de dados de forma eficiente, segura e organizada.
 
