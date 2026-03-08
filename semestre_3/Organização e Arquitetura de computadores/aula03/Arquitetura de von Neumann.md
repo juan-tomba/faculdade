@@ -82,7 +82,8 @@
 ![[Pasted image 20260304135713.png]]
 
 
-- 1° dígito = opcode, resto = endereço
+- 1° dígito = opcode
+- resto = endereço
 
 - **EXEMPLO DA IMAGEM**
 - 1940 = (AC) <- mem(940)
