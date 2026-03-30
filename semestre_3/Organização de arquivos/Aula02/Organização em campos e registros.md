@@ -18,7 +18,7 @@
 
 | **Vantagens**                                                                   | **Desvantagens**                                                          |
 | :------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
-| Facilidade na pesquisa                                                          | Desperdício de memória                                                    |
+| Facilidade na pesquisa(utilizar fórmula para pesquisa)                          | Desperdício de memória                                                    |
 | Situações nas quais o comprimento dos campos é fixo ou apresenta pouca variação | Possibilidade de truncamento de dados                                     |
 |                                                                                 | Situações nas quais se tem grande quantidade de dados de tamanho variável |
 
@@ -28,11 +28,11 @@
 
 ![[Pasted image 20260307153558.png]]
 
-| **Vantagens**                                                                                        | **Desvantagens**        |
-| :--------------------------------------------------------------------------------------------------- | :---------------------- |
-| Economia de espaço de armazenamento, mesmo gastando alguns bytes para armazenar o tamanho dos campos | Dificuldade na pesquisa |
-| Dados não precisam ser truncados                                                                     |                         |
-|                                                                                                      |                         |
+| **Vantagens**                                                                                        | **Desvantagens**                       |
+| :--------------------------------------------------------------------------------------------------- | :------------------------------------- |
+| Economia de espaço de armazenamento, mesmo gastando alguns bytes para armazenar o tamanho dos campos | Dificuldade na pesquisa(utiliza jumps) |
+| Dados não precisam ser truncados                                                                     |                                        |
+|                                                                                                      |                                        |
 
 ## Delimitadores
 
@@ -43,7 +43,7 @@
 
 | **Vantagens**                       | **Desvantagens**                                                               |
 | :---------------------------------- | :----------------------------------------------------------------------------- |
-| Economia no espaço de armazenamento | Dificuldade na pesquisa                                                        |
+| Economia no espaço de armazenamento | Dificuldade na pesquisa(byte a byte)                                           |
 |                                     | Necessidade de escolha de um delimitador que não pertence ao domínio dos dados |
 |                                     |                                                                                |
 
@@ -93,6 +93,7 @@
 
 - Armazena o tamanho de cada registro em bytes
 - Uso de **campos de tamanho váriavel**
+- **Pesquisa**: utiliza jumps do n° de bytes, até achar o registro/campo desejado
 > Método muito utilizado para manipular registros de tamanho variável
 
 ![[Pasted image 20260307173911.png]]

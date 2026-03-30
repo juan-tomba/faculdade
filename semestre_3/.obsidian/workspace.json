@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "28c16d977ece674f",
+        "id": "4175a788d5a1cab0",
         "type": "tabs",
         "children": [
           {
-            "id": "f2794881fbc5d05b",
+            "id": "5b41e0879c011176",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Organização de arquivos/Aula02/Organização em campos e registros.md",
-                "mode": "preview",
+                "file": "Programação Orientada a objetos/aula03/Introdução a Java e Python.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Organização em campos e registros"
+              "title": "Introdução a Java e Python"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 269.5
+    "width": 251.5
   },
   "right": {
     "id": "a0b7c018f7d2ad2d",
@@ -184,39 +184,53 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "f2794881fbc5d05b",
+  "active": "5b41e0879c011176",
   "lastOpenFiles": [
-    "Organização de arquivos/Aula02/Revisão.md",
-    "Organização de arquivos/Aula02/Organização em campos e registros.md",
-    "Organização e Arquitetura de computadores/aula03/Arquitetura de von Neumann.md",
-    "Organização de arquivos/Aula02/Pasted image 20260307174026.png",
-    "Organização de arquivos/Aula02/Pasted image 20260307173911.png",
-    "Organização de arquivos/Aula02/Pasted image 20260307173157.png",
-    "Organização de arquivos/Aula02/Pasted image 20260307173006.png",
-    "Pasted.md",
+    "Programação Orientada a objetos/aula03/Main.class",
+    "Programação Orientada a objetos/aula03/Main.java",
+    "Programação Orientada a objetos/aula03/main.class",
+    "Programação Orientada a objetos/aula03/main.java",
+    "Programação Orientada a objetos/aula03/Cadeira.class",
+    "Modelagem Computacional em Grafos/aula03/Definições (parte 2).md",
+    "Modelagem Computacional em Grafos/aula03/Estruturas de dados.md",
     "Modelagem Computacional em Grafos/aula02/Definições.md",
-    "Organização de arquivos/Aula02/Pasted image 20260307154016.png",
-    "Organização de arquivos/Aula02/Pasted image 20260307153558.png",
-    "Organização de arquivos/Aula02/Pasted image 20260307152819.png",
-    "Programação Funcional/aula02/Aula02.md",
-    "Programação Orientada a objetos/aula02",
-    "Programação Orientada a objetos/aula01",
-    "Modelagem Computacional em Grafos/aula02/Pasted image 20260305140117.png",
-    "Programação Funcional/aula01/Introdução.md",
-    "Programação Funcional/aula02/Pasted image 20260305110101.png",
-    "Programação Funcional/aula02/Pasted image 20260305104548.png",
-    "Programação Funcional/aula02/aula2.hs",
-    "Organização e Arquitetura de computadores/aula02/Evolução e questões de desempenho.md",
+    "Organização e Arquitetura de computadores/Listas/Lista 1 - Introdução e Conceitos gerais.md",
     "Organização e Arquitetura de computadores/aula01/Apresentação e introdução da disciplina.md",
-    "Modelagem Computacional em Grafos/aula01/Introdução.md",
-    "Organização de arquivos/Aula01/Disco (HDD).md",
-    "Organização e Arquitetura de computadores/aula03",
-    "Programação Funcional/aula02",
-    "Programação Funcional/aula01",
-    "Programação Funcional",
-    "Modelagem Computacional em Grafos/aula01/Introdução",
-    "Modelagem Computacional em Grafos/aula02",
-    "Modelagem Computacional em Grafos/aula01",
-    "Bem-vindo.md"
+    "Organização e Arquitetura de computadores/aula03/Arquitetura de von Neumann.md",
+    "Organização e Arquitetura de computadores/aula02/Evolução e questões de desempenho.md",
+    "Organização e Arquitetura de computadores/aula04/Arquitetura CISC e RISC.md",
+    "Programação Orientada a objetos/aula03/Introdução a Java e Python.md",
+    "Organização e Arquitetura de computadores/Listas",
+    "Programação Orientada a objetos/aula03/Cadeira.java",
+    "Programação Orientada a objetos/aula03/cadeira.java",
+    "Programação Orientada a objetos/aula03/primeiroPrograma.java",
+    "Programação Orientada a objetos/aula02/Introdução a POO.md",
+    "Programação Orientada a objetos/aula03",
+    "Laboratório de Física 1/Prática 01.md",
+    "Organização e Arquitetura de computadores/aula08/Pilha.md",
+    "Organização e Arquitetura de computadores/aula08/fatrecursivo.asm",
+    "Organização de arquivos/Aula05/Aulão para o trabalho.md",
+    "Organização de arquivos/Aula04/Abordagem Dinâmica.md",
+    "Organização de arquivos/Aula04/Implementação da Abordagem Estática.md",
+    "Programação Funcional/aula01/Introdução.md",
+    "Programação Funcional/aula02/Aula02.md",
+    "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
+    "Organização e Arquitetura de computadores/aula07/Procedimentos e funções.md",
+    "Organização e Arquitetura de computadores/aula06/Comandos Assembly.md",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323213253.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211923.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211825.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211811.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211609.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323210749.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323205332.png",
+    "Pasted image 20260323204948.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323203706.png",
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323203615.png",
+    "Organização e Arquitetura de computadores/aula05/Prática assembly.md",
+    "Organização de arquivos/Aula03/Organização híbrida e Abordagem estática.md",
+    "Organização de arquivos/Aula02/Organização em campos e registros.md",
+    "Organização de arquivos/Aula02/Revisão.md",
+    "Pasted.md"
   ]
 }

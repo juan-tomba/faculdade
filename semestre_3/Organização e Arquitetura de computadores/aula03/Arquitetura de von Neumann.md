@@ -65,6 +65,14 @@
 
 ## Características de uma máquina hipotética
 
+- Formato:
+	- Instrução
+		- 4 bits- Código de operação
+		- 12 bits- endereço
+	- Números inteiros
+		- 1 bit - sinal
+		- 15 bits - magnitude
+
 - Registradores:
 	- **Contador de programa (PC)** = endereço da próxima instrução
 	- **Registrador de instrução (IR)** = instrução que está sendo executada
@@ -84,7 +92,13 @@
 
 - 1° dígito = opcode
 - resto = endereço
-
+- MBR - pode ter instruções no ciclo de busca e dados no ciclo de execução
+- MAR - recebe valor de pc no ciclo de busca e ir no ciclo de execução
+- Ciclo de busca:
+	- MAR <- PC
+	- MBR <- mem(MAR)
+	- PC <- PC + 1
+	- IR <- MBR
 - **EXEMPLO DA IMAGEM**
 - 1940 = (AC) <- mem(940)
 	- AC = 3
