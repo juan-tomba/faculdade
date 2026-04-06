@@ -1,19 +1,18 @@
 ### **1. Com suas próprias palavras, diferencie Organização de Arquitetura de Computadores.**
 
 -  Arquitetura é o conjunto de atributos visíveis ao programador (conjunto de instruções, número de bits usados para representar dados, etc...). Já Organização se refere a como esses atributos são implementados (interface, tecnologia de memória, etc)
-
 ### **2. Qual a importância de se estudar Organização e Arquitetura?**
 
 - O estudo é realizado para a compreensão (como programadores) de como funciona o sistema de processamento de instruções e registradores, garantindo conhecimento sobre os comandos que nosso programa tem sobre o computador.
 
- ### **3. Quais os principais componentes de um computador? Liste e detalhe a função deles**
+### **3. Quais os principais componentes de um computador? Liste e detalhe a função deles**
  
 - CPU - Executa instruções e processa dados
 - Memória Principal - Armazena temporiamente os dados/instruções do programa
 - Módulo de E/S - Recebe entrada do usuário e Imprime saída para o usuário
 - Sistema de barramento - permite e interconexão entre os elementos
 
- ### **4. Quais os principais componentes da CPU? Liste e detalhe a função deles.**
+### **4. Quais os principais componentes da CPU? Liste e detalhe a função deles.**
  
 - Program Counter (PC) - Armazena o endereço da próxima instrução
 - Instruction Register (IR) -Contém a atual instrução da CPU
@@ -28,7 +27,7 @@
 
 ###  **6. O que caracteriza uma arquitetura de propósito geral?**
 
-- Segue instruções, como uma "sequência de passos", em que cada passo realiza uma operação aritmética ou lógica. É capaz de executar diferentes tipos de programas, não sendo especializada para uma única tarefa.
+- É capaz de executar diferentes tipos de programas, não sendo especializada para uma única tarefa.
 
 ### **7. Defina com suas palavras qual a função dos sinais de controle.**
 

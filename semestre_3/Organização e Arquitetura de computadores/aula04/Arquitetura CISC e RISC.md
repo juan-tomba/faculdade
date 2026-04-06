@@ -66,14 +66,14 @@ add t3, t0, t2
 
 ![[Pasted image 20260311135934.png]]
 
-|registrador|função|
-|---|---|
-|x0 (zero)|sempre 0|
-|ra|return address|
-|sp|stack pointer|
-|a0–a7|argumentos / retorno|
-|t0–t6|temporários|
-|s0–s11|registradores salvos|
+| registrador | função               |
+| ----------- | -------------------- |
+| x0 (zero)   | sempre 0             |
+| ra          | return address       |
+| sp          | stack pointer        |
+| a0–a7       | argumentos / retorno |
+| t0–t6       | temporários          |
+| s0–s11      | registradores salvos |
 ## Assembly RISC-V
 
 - **Estrutura do código**
