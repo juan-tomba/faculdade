@@ -7,7 +7,7 @@ main:	#ler o numero
 	ecall
 	#salvar em s0
 	add s0, zero, a0
-	#chamar funcão
+	#chamar funcï¿½o
 	jal fatorial
 	#imprimir resultado
 	addi a7, zero, 1 #end1
@@ -20,8 +20,8 @@ fatorial:
 	addi sp, sp, -8
 	sw ra, 0(sp)
 	sw a0, 4(sp)
-	beq a0, zero, retorna1	#condição de parada
-	# decrementa o parametro e chama a função novamente
+	beq a0, zero, retorna1	#condiï¿½ï¿½o de parada
+	# decrementa o parametro e chama a funï¿½ï¿½o novamente
 	addi a0, a0, -1
 	jal fatorial
 	addi a0,a0,1	#end2
@@ -32,7 +32,8 @@ fatorial:
 retorna1:	#a1 = 1
 	addi a1,zero,1
 	#desempilhar
-retornafat:	lw ra, 0(sp)
+retornafat:	
+	lw ra, 0(sp)
 	lw a0, 4(sp)
 	addi sp, sp, 8
 	jr ra

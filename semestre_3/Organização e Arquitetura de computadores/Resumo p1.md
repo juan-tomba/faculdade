@@ -120,3 +120,44 @@ O processador busca a instrução na memória e prepara o próximo passo:
 * **Temporários (t) vs Salvos (s):**
     * Se você chamar uma função dentro de outra, a função chamada pode apagar os seus `t`. 
     * Se você precisa que um valor sobreviva a uma chamada de função, guarde-o nos `s` (mas lembre-se de salvar o valor original do `s` na pilha antes!).
+
+
+
+### Prova 024
+
+von neumann - dados/instruções na memória
+instruction set architeture: conjunto de opcodes (add, mv)
+cpu - unidade de controle de processamento, buscar e executar instruções
+ciclo de busca: buscar a instrução
+	mar = pc
+	mbr = mem(mar)
+	pc = pc + 1
+	ir = mbr
+ciclo de execução: uc decodifica a instrução e manda sinais de controle para os componentes envolvidos na operação
+registrador: memória rápida da cpu para armazenar dados rapidamente
+	
+
+linked list:
+	primeiro criaria um rótulo "header" no .data, que é uma variável que guarda o endereço do primeiro nó, para a inserção, utilizaria uma função auxiliar "malloc_no" que alocaria a memória necessária para o nó, que vou definir como 8 bytes (4 para ID e 4 para endereço do próximo), para busca iria comparando o valor do nó com o valor buscado, até o próximo ser nulo, e para remoção, basta achar o nó, colocar o próximo do anterior no próximo do nó retirado
+
+
+strcpy:
+	add t0, zero, a0
+	add t1, zero, a1 # assumindo que foram alocados N bytes com o ecall 9
+	addi t2, zero, 0 # contadora
+	# s1 é N
+loop:
+	beq t2, s1, fim
+	lb t3, 0(t0)
+	sb t3, 0(t1)
+	addi t0, t0, 1
+	addi t1, t1, 1
+	addi t2, t2, 1
+	j loop
+fim:
+	addi t1, t1, 1
+	sb zero, 0(t1) #\0
+	# retorna em a1
+	jr ra
+	
+	

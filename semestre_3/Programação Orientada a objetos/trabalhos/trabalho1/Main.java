@@ -21,14 +21,14 @@ public class Main {
     }
 
     private static Tabuleiro entrada_tab(String linha) {
-        String[] partes = linha.trim().split("\\s+");
-        int n = (int) Math.sqrt(partes.length);
+        String[] partes = linha.trim().split("\\s+"); // remove espaços
+        int n = (int) Math.sqrt(partes.length); // calcula dimensao do tabuleiro
         int[] config = new int[partes.length];
         
         for (int i = 0; i < partes.length; i++) {
             config[i] = Integer.parseInt(partes[i]);
         }
         
-        return new Tabuleiro(n, config);
+        return new Tabuleiro(n, config); // chama construtor
     }
 }

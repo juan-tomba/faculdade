@@ -20,6 +20,7 @@
 - Memory Adress Register (MAR) - Armazena o endereço físico da memória RAM que será lida/escrita
 -  Unidade de Controle (UC) - Controla as instruções e envia sinais para os outros componentes 
 - Acumulador(AC) - Serve armazenar temporiamente os dados
+- Unidade Lógica e Aritmética (ULA) - Realiza cálculos matemáticos (soma, subtração) e operações lógicas (AND, OR, NOT).
 
 ### **5. Defina com suas próprias palavras o conceito de Programa Armazenado proposto por von Neumann.**
 
