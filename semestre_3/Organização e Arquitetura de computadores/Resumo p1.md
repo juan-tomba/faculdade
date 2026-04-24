@@ -140,9 +140,9 @@ registrador: memória rápida da cpu para armazenar dados rapidamente
 linked list:
 	primeiro criaria um rótulo "header" no .data, que é uma variável que guarda o endereço do primeiro nó, para a inserção, utilizaria uma função auxiliar "malloc_no" que alocaria a memória necessária para o nó, que vou definir como 8 bytes (4 para ID e 4 para endereço do próximo), para busca iria comparando o valor do nó com o valor buscado, até o próximo ser nulo, e para remoção, basta achar o nó, colocar o próximo do anterior no próximo do nó retirado
 
-
+```
 strcpy:
-	add t0, zero, a0
+add t0, zero, a0
 	add t1, zero, a1 # assumindo que foram alocados N bytes com o ecall 9
 	addi t2, zero, 0 # contadora
 	# s1 é N
@@ -159,5 +159,4 @@ fim:
 	sb zero, 0(t1) #\0
 	# retorna em a1
 	jr ra
-	
-	
+```

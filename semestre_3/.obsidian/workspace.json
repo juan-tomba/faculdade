@@ -4,39 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "d66f6d4b2edaa565",
+        "id": "2f8eba34fd3e073e",
         "type": "tabs",
         "children": [
           {
-            "id": "6b2e98865d3fef7b",
+            "id": "19982f8fa2856232",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
-                "mode": "preview",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Ordenação topológica e Componentes Fortemente Conectados"
-            }
-          },
-          {
-            "id": "b9ec66a1faac90dd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Modelagem Computacional em Grafos/aula05/Busca em grafos.md",
-                "mode": "preview",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Busca em grafos"
+              "title": "Nova aba"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -199,53 +180,53 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "b9ec66a1faac90dd",
+  "active": "19982f8fa2856232",
   "lastOpenFiles": [
-    "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
-    "Modelagem Computacional em Grafos/aula05/Busca em grafos.md",
-    "Imprimir Assembly Prova.md",
-    "Modelagem Computacional em Grafos/aula05",
+    "Programação Orientada a objetos/aula04/Introdução a Python.md",
+    "Programação Funcional/aula02/Aula02.md",
+    "Programação Funcional/aula01/Introdução.md",
+    "Programação Orientada a objetos/aula05/Anotações.md",
+    "Programação Orientada a objetos/trabalhos/trabalho3/placar.zip",
+    "Programação Orientada a objetos/trabalhos/trabalho3/bozo.zip",
+    "Programação Orientada a objetos/trabalhos/trabalho3/trab.zip",
+    "Programação Orientada a objetos/trabalhos/trabalho3/dado.zip",
+    "Programação Orientada a objetos/trabalhos/trabalho3/tra.zip",
+    "Programação Orientada a objetos/trabalhos/trabalho3/input.txt",
+    "Programação Orientada a objetos/trabalhos/trabalho3/a.txt",
+    "Programação Orientada a objetos/trabalhos/trabalho3/__pycache__/placar.cpython-312.pyc",
+    "Programação Orientada a objetos/trabalhos/trabalho3/__pycache__/dado.cpython-312.pyc",
+    "Programação Orientada a objetos/trabalhos/trabalho3/__pycache__/roladados.cpython-312.pyc",
+    "Organização e Arquitetura de computadores/aula10/Implementação da arquitetura RISC - V.md",
     "Organização e Arquitetura de computadores/Resumo p1.md",
+    "Organização e Arquitetura de computadores/aula09/Tipos de instruções.md",
+    "Organização e Arquitetura de computadores/aula08/Pilha.md",
+    "Organização de arquivos/Aula06/Estruturas de Indexação de Dados.md",
+    "Organização de arquivos/Aula06/Pasted image 20260416080747.png",
+    "Modelagem Computacional em Grafos/aula05/Busca em grafos.md",
+    "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
+    "Modelagem Computacional em Grafos/aula03/Estruturas de dados.md",
+    "Modelagem Computacional em Grafos/aula03/Definições (parte 2).md",
+    "Modelagem Computacional em Grafos/aula02/Definições.md",
+    "Modelagem Computacional em Grafos/aula01/Introdução.md",
+    "Programação Orientada a objetos/aula03/Introdução a Java.md",
+    "Programação Orientada a objetos/aula04/Pasted image 20260409144449.png",
     "Organização e Arquitetura de computadores/Listas/Lista 1 - Introdução e Conceitos gerais.md",
+    "Imprimir Assembly Prova.md",
     "Organização e Arquitetura de computadores/aula04/Arquitetura CISC e RISC.md",
     "Organização e Arquitetura de computadores/aula04/Pasted image 20260311135934.png",
     "Organização e Arquitetura de computadores/aula03/Arquitetura de von Neumann.md",
     "Organização e Arquitetura de computadores/aula02/Evolução e questões de desempenho.md",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer13.asm",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer11.asm",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer10.asm",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer9.asm",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer8.asm",
-    "Organização e Arquitetura de computadores/Listas/Lista 2/exer7.asm",
     "Organização e Arquitetura de computadores/aula05/Prática assembly.md",
     "Organização e Arquitetura de computadores/aula01/Apresentação e introdução da disciplina.md",
-    "Organização e Arquitetura de computadores/aula08/Pilha.md",
     "Organização e Arquitetura de computadores/aula07/Procedimentos e funções.md",
     "Organização e Arquitetura de computadores/aula06/Comandos Assembly.md",
     "Programação Orientada a objetos/aula02/Introdução a POO.md",
-    "Programação Orientada a objetos/trabalhos/trabalho1.zip",
-    "Programação Orientada a objetos/trabalhos/trabalho1/makefile",
-    "Organização de arquivos/Aula05/Aulão para o trabalho.md",
-    "Programação Orientada a objetos/aula03/Introdução a Java e Python.md",
-    "Programação Orientada a objetos/aula03/Main.class",
-    "Modelagem Computacional em Grafos/aula03/Definições (parte 2).md",
-    "Modelagem Computacional em Grafos/aula03/Estruturas de dados.md",
-    "Modelagem Computacional em Grafos/aula02/Definições.md",
-    "Laboratório de Física 1/Prática 01.md",
-    "Organização de arquivos/Aula04/Abordagem Dinâmica.md",
-    "Organização de arquivos/Aula04/Implementação da Abordagem Estática.md",
-    "Programação Funcional/aula01/Introdução.md",
-    "Programação Funcional/aula02/Aula02.md",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323213253.png",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211923.png",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211825.png",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211811.png",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323211609.png",
     "Modelagem Computacional em Grafos/aula03/Pasted image 20260323210749.png",
-    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323205332.png",
-    "Pasted image 20260323204948.png",
-    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323203706.png",
-    "Organização de arquivos/Aula03/Organização híbrida e Abordagem estática.md",
-    "Organização de arquivos/Aula02/Organização em campos e registros.md"
+    "Modelagem Computacional em Grafos/aula03/Pasted image 20260323205332.png"
   ]
 }
