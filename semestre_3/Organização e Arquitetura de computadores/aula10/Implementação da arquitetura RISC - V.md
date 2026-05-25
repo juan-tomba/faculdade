@@ -8,7 +8,7 @@
 
 ### Possíveis implementações
 
-- **Monociclo**: Todas as instruções são executas em um *único ciclo de clock*
+- **Monociclo**: Todas as instruções são executadas em um *único ciclo de clock*
 - **Multiciclo**: As *instruções são quebradas em etapas*, e cada etapa é executada em um único ciclo de clock (não vamos implementar)
 - **Pipeline**: As instruções são quebradas em etapas, e *etapas de múltiplas instruções são executadas ao mesmo tempo*
 
