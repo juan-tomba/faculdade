@@ -38,3 +38,12 @@
 - Com isso, o pipeline precisa:
 	- parar uma instrução (stall/bolha)
 	- ou atrasar algum estágio
+
+## Exemplo
+
+- 1000 instruções
+	- Monociclo = 1000 * 10 = 10000 us
+	- Pipeline = 1004 * 3 = 3012 us
+
+- *M estágios* - m + (n-1) * 1
+- *N instruções* - (m - 1) + n * 1

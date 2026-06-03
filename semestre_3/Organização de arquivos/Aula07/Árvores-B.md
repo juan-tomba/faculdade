@@ -12,9 +12,11 @@
 
 
 
-# Pesquisa (busca)
+## Pesquisa (busca)
 
-## Algoritmo
+- Recursiva
+- **TODA BUSCA COMEÇA PELO NÓ RAIZ**
+- Busca binária (por isso ordenado)
 
 ```
 se RRN da página corrente é -1
@@ -27,11 +29,7 @@ se RRN da página corrente é -1
 fim se
 ```
 
-- Recursiva
-- **TODA BUSCA COMEÇA PELO NÓ RAIZ**
-- Busca binária (por isso ordenado)
-
-# Inserção
+## Inserção
 
 - Sempre realizada no **nó folha**
 - Situações que devem ser analisadas:
