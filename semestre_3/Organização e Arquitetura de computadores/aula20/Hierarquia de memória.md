@@ -1,0 +1,2 @@
+- ram 4gb = 2^2 * 2^30 (giga) bytes = 2^32
+-  (fazer tabela com kb = 2^10, mb = 2^20) etc

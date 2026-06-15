@@ -8,20 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "2c74e6cb329dcf02",
+            "id": "a4ccd23175702076",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Modelagem Computacional em Grafos/aula08/Fluxo Máximo.md",
+                "file": "Modelagem Computacional em Grafos/aula08/Fluxo Máximo e Ford-Fulkerson.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fluxo Máximo"
+              "title": "Fluxo Máximo e Ford-Fulkerson"
+            }
+          },
+          {
+            "id": "e23fd074cda0a614",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Modelagem Computacional em Grafos/aula07/Caminhos Mínimos.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Caminhos Mínimos"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -184,16 +199,30 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "01fe0a4d2a8bbf4b",
+  "active": "e23fd074cda0a614",
   "lastOpenFiles": [
+    "Modelagem Computacional em Grafos/aula06/Árvores Geradoras Mínimas (MST).md",
+    "Modelagem Computacional em Grafos/aula08/Fluxo Máximo e Ford-Fulkerson.md",
+    "Organização e Arquitetura de computadores/aula20/Hierarquia de memória.md",
+    "Modelagem Computacional em Grafos/aula08/Pasted image 20260609140024 1.png",
+    "Modelagem Computacional em Grafos/aula08/Pasted image 20260609140024.png",
+    "Organização e Arquitetura de computadores/aula19/Dependência de Controle.md",
+    "Organização e Arquitetura de computadores/aula20",
+    "Modelagem Computacional em Grafos/aula05/Busca em grafos.md",
+    "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
     "Modelagem Computacional em Grafos/aula07/Caminhos Mínimos.md",
-    "Modelagem Computacional em Grafos/aula08/Fluxo Máximo.md",
+    "Modelagem Computacional em Grafos/aula07/Pasted image 20260609134113.png",
+    "Modelagem Computacional em Grafos/aula07/Pasted image 20260609133813.png",
+    "Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png",
+    "Organização e Arquitetura de computadores/aula18/Dependência de Dados.md",
+    "Organização e Arquitetura de computadores/aula19",
+    "Organização e Arquitetura de computadores/aula16/Implementação Arquitetura RISC-V Pipeline.md",
+    "Organização de arquivos/Aula10/Ordenação interna e externa.md",
+    "Organização de arquivos/Aula10",
     "Sem título/desktop.ini",
     "Modelagem Computacional em Grafos/aula08",
-    "Organização e Arquitetura de computadores/aula18/Dependência de Dados -.md",
     "Organização e Arquitetura de computadores/aula15/Pipeline.md",
     "Organização e Arquitetura de computadores/aula15/IMG_7251.jpeg",
-    "Organização e Arquitetura de computadores/aula16/Implementação Arquitetura RISC-V Pipeline.md",
     "Organização de arquivos/Aula09/Remoção árvore-B.md",
     "Organização e Arquitetura de computadores/aula18",
     "Organização e Arquitetura de computadores/aula17",
@@ -201,36 +230,21 @@
     "Organização de arquivos/Aula08/Árvore-B continuação.md",
     "Organização de arquivos/Aula09",
     "Organização e Arquitetura de computadores/aula16/Pasted image 20260526105555.png",
-    "Modelagem Computacional em Grafos/aula06/Árvores Geradoras Mínimas (MST).md",
     "Modelagem Computacional em Grafos/aula07",
     "Organização e Arquitetura de computadores/aula16/Pasted image 20260526105621.png",
-    "Organização e Arquitetura de computadores/aula16",
     "Modelagem Computacional em Grafos/aula06/Pasted image 20260525220414.png",
     "Organização de arquivos/Aula07/Árvores-B.md",
     "Organização e Arquitetura de computadores/aula14/Arquitetura Monociclo.md",
-    "Organização de arquivos/Aula08",
     "Organização de arquivos/Aula06/Estruturas de Indexação de Dados.md",
     "Programação Orientada a objetos/aula06/Anotações.md",
     "Programação Orientada a objetos/aula04/Introdução a Python.md",
-    "Programação Orientada a objetos/aula06",
     "Programação Orientada a objetos/aula05/Anotações.md",
     "Organização e Arquitetura de computadores/aula14/Pasted image 20260521084226.png",
     "Organização e Arquitetura de computadores/aula10/Implementação da arquitetura RISC - V.md",
-    "Organização de arquivos/Aula07/Pasted image 20260519170737.png",
     "Laboratório de Física 1/Prática 01.md",
-    "Modelagem Computacional em Grafos/aula06/Pasted image 20260519151255.png",
-    "Modelagem Computacional em Grafos/aula06/Pasted image 20260519145311.png",
     "Modelagem Computacional em Grafos/aula03/Estruturas de dados.md",
-    "Modelagem Computacional em Grafos/aula04/Ordenação topológica e Componentes Fortemente Conectados.md",
-    "Modelagem Computacional em Grafos/aula05/Busca em grafos.md",
     "Organização e Arquitetura de computadores/aula09/Tipos de instruções.md",
-    "Organização e Arquitetura de computadores/aula14/PHOTO-2026-05-19-10-44-27.jpg",
-    "Organização e Arquitetura de computadores/aula14/PHOTO-2026-05-19-10-43-29.jpg",
     "Programação Funcional/aula01/Introdução.md",
-    "Organização e Arquitetura de computadores/Resumos/Resumo p1.md",
-    "Programação Funcional/aula02/Aula02.md",
-    "Organização e Arquitetura de computadores/aula08/Pilha.md",
-    "Modelagem Computacional em Grafos/aula03/Definições (parte 2).md",
-    "Modelagem Computacional em Grafos/aula02/Definições.md"
+    "Organização e Arquitetura de computadores/Resumos/Resumo p1.md"
   ]
 }
