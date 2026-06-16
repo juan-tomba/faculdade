@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descomplicando o Assembly</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== DESIGN TOKENS ===== */
+  :root {
+    --bg-deep:     #0a0e1a;
+    --bg-panel:    #111827;
+    --bg-card:     #1a2235;
+    --accent-green:#00ff9d;
+    --accent-blue: #3b82f6;
+    --accent-amber:#f59e0b;
+    --accent-pink: #ec4899;
+    --text-main:   #e2e8f0;
+    --text-dim:    #94a3b8;
+    --text-faint:  #475569;
+    --border:      #1e3a5f;
+    --glow-green:  0 0 20px rgba(0,255,157,0.4);
+    --glow-blue:   0 0 20px rgba(59,130,246,0.4);
+    --font-mono:   'Share Tech Mono', monospace;
+    --font-display:'Orbitron', sans-serif;
+    --font-body:   'Inter', sans-serif;
+    --radius:      12px;
+    --radius-sm:   8px;
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-deep);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== CIRCUIT BACKGROUND ===== */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,157,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,157,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.2s;
+    box-shadow: var(--glow-green);
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 3px; left: 0; right: 0; z-index: 999;
+    background: rgba(10,14,26,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--accent-green);
+    letter-spacing: 1px;
+    text-shadow: var(--glow-green);
+  }
+  .nav-links {
+    display: flex; gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-green); }
+  @media(max-width:640px){ .nav-links { display: none; } }
+
+  /* ===== SECTIONS ===== */
+  section {
+    position: relative; z-index: 1;
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  section + section { padding-top: 2rem; }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-green);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before {
+    content: '//';
+    opacity: 0.5;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding-top: 6rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 1.5rem; padding-right: 1.5rem;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-green);
+    letter-spacing: 4px;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .blink {
+    display: inline-block; width: 8px; height: 16px;
+    background: var(--accent-green);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  h1 .green { color: var(--accent-green); text-shadow: var(--glow-green); }
+  h1 .blue  { color: var(--accent-blue); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--accent-green);
+    color: var(--bg-deep);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.9rem 2rem;
+    border: none; border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--glow-green);
+    letter-spacing: 1px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(0,255,157,0.6); }
+
+  .hero-cpu {
+    margin-top: 3rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .hero-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .hero-chip .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+
+  /* ===== CARDS ===== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .card:hover { border-color: var(--accent-green); transform: translateY(-3px); }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-green), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card:hover::before { opacity: 1; }
+  .card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    color: var(--accent-green);
+  }
+  .card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ===== COMPARISON TABLE ===== */
+  .compare-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  @media(max-width:580px){ .compare-wrap { grid-template-columns: 1fr; } }
+  .compare-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .compare-header {
+    padding: 1rem 1.5rem;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .compare-header.high { background: rgba(59,130,246,0.2); color: var(--accent-blue); }
+  .compare-header.low  { background: rgba(0,255,157,0.1); color: var(--accent-green); }
+  .compare-code {
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-main);
+    line-height: 2;
+  }
+  .compare-code .kw  { color: var(--accent-blue); }
+  .compare-code .fn  { color: var(--accent-amber); }
+  .compare-code .str { color: #a5f3fc; }
+  .compare-code .cm  { color: var(--text-faint); font-style: italic; }
+  .compare-code .reg { color: var(--accent-green); }
+
+  /* ===== KITCHEN ANALOGY ===== */
+  .kitchen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .kitchen-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+  .kitchen-item:hover { transform: translateY(-4px); border-color: var(--accent-amber); }
+  .kitchen-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+  .kitchen-eq {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--accent-amber);
+    letter-spacing: 2px;
+    margin-bottom: 0.35rem;
+  }
+  .kitchen-item h3 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 0.4rem;
+  }
+  .kitchen-item p { color: var(--text-dim); font-size: 0.82rem; }
+
+  /* ===== REGISTERS ===== */
+  .registers-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .register-box {
+    background: var(--bg-panel);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: inset 0 0 20px rgba(0,255,157,0.05);
+    transition: box-shadow 0.3s;
+    position: relative;
+  }
+  .register-box:hover { box-shadow: var(--glow-green), inset 0 0 20px rgba(0,255,157,0.1); }
+  .reg-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--accent-green);
+    text-shadow: var(--glow-green);
+    margin-bottom: 0.25rem;
+  }
+  .reg-full {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+  }
+  .reg-bits {
+    display: flex; gap: 2px;
+    margin-bottom: 0.75rem;
+  }
+  .reg-bit {
+    height: 20px;
+    flex: 1;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--text-faint);
+    transition: background 0.3s, color 0.3s;
+  }
+  .reg-bit.on {
+    background: rgba(0,255,157,0.2);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+  }
+  .reg-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-amber);
+  }
+  .reg-desc {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.5rem;
+  }
+
+  /* ===== INSTRUCTIONS ===== */
+  .instr-list {
+    display: flex; flex-direction: column; gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .instr-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+  }
+  @media(max-width:520px){ .instr-card { grid-template-columns: 1fr; } }
+  .instr-badge {
+    padding: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 900;
+  }
+  .instr-badge.mov { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+  .instr-badge.add { background: rgba(0,255,157,0.1); color: var(--accent-green); }
+  .instr-badge.sub { background: rgba(236,72,153,0.1); color: var(--accent-pink); }
+  .instr-body { padding: 1.25rem 1.5rem; }
+  .instr-body h3 { font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 0.4rem; }
+  .instr-body p  { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 0.75rem; }
+  .instr-example {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.75rem;
+    color: var(--accent-amber);
+    display: inline-block;
+  }
+  .instr-anim {
+    margin-top: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+  }
+  .mini-reg {
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.78rem;
+    min-width: 48px;
+    text-align: center;
+    transition: background 0.5s, color 0.5s, border-color 0.5s;
+  }
+  .mini-reg.highlight {
+    border-color: var(--accent-green);
+    background: rgba(0,255,157,0.15);
+    color: var(--accent-green);
+  }
+  .arrow { color: var(--accent-amber); }
+
+  /* ===== SIMULATOR ===== */
+  #simulator {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .sim-header {
+    background: var(--bg-deep);
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sim-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .sim-dot.r { background: #ef4444; }
+  .sim-dot.y { background: var(--accent-amber); }
+  .sim-dot.g { background: var(--accent-green); }
+  .sim-title {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-left: 0.25rem;
+  }
+  .sim-body {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    min-height: 400px;
+  }
+  @media(max-width:700px){ .sim-body { grid-template-columns: 1fr; } }
+
+  .sim-editor {
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+  .sim-toolbar {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+  }
+  .sim-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .sim-btn:hover { border-color: var(--accent-green); color: var(--accent-green); }
+  .sim-btn.run  { border-color: var(--accent-green); color: var(--accent-green); }
+  .sim-btn.run:hover { background: rgba(0,255,157,0.1); }
+  .sim-btn.step { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .sim-btn.step:hover { background: rgba(59,130,246,0.1); }
+  .sim-btn.reset { border-color: var(--accent-pink); color: var(--accent-pink); }
+  .sim-btn.reset:hover { background: rgba(236,72,153,0.1); }
+
+  #code-input {
+    flex: 1;
+    background: var(--bg-deep);
+    color: var(--accent-green);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    padding: 1rem 1.25rem;
+    border: none;
+    resize: none;
+    outline: none;
+    min-height: 200px;
+  }
+  #code-input::placeholder { color: var(--text-faint); }
+
+  .sim-log {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    min-height: 80px;
+    max-height: 120px;
+    overflow-y: auto;
+  }
+  .log-line { margin-bottom: 0.25rem; }
+  .log-line.ok  { color: var(--accent-green); }
+  .log-line.err { color: var(--accent-pink); }
+  .log-line.inf { color: var(--accent-amber); }
+
+  .sim-registers {
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .sim-reg-title {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    margin-bottom: 0.25rem;
+  }
+  .sim-reg-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.4s, background 0.4s;
+  }
+  .sim-reg-row.changed {
+    border-color: var(--accent-green);
+    background: rgba(0,255,157,0.07);
+    animation: flash 0.6s ease;
+  }
+  @keyframes flash { 0%{background:rgba(0,255,157,0.3)} 100%{background:rgba(0,255,157,0.07)} }
+  .sim-reg-name {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--accent-green);
+    width: 32px;
+  }
+  .sim-reg-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-panel);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .sim-reg-bar {
+    height: 100%;
+    background: var(--accent-green);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .sim-reg-val {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-amber);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .sim-examples {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .sim-ex-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .sim-ex-btn {
+    display: block; width: 100%;
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+    margin-bottom: 0.4rem;
+    text-align: left;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .sim-ex-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+
+  /* ===== REAL APPS ===== */
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+  .app-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: relative; overflow: hidden;
+  }
+  .app-card::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, rgba(59,130,246,0.1), transparent);
+    border-radius: 50%;
+  }
+  .app-card .app-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .app-card h3 { font-family: var(--font-display); font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+  .app-card p  { color: var(--text-dim); font-size: 0.85rem; }
+
+  /* ===== QUIZ ===== */
+  #quiz-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+  .quiz-score-bar {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .quiz-score-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+  .quiz-score-num {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--accent-green);
+    text-shadow: var(--glow-green);
+  }
+  #quiz-question {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .quiz-option {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1.1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .quiz-option:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .quiz-option.correct { border-color: var(--accent-green); background: rgba(0,255,157,0.1); color: var(--accent-green); }
+  .quiz-option.wrong   { border-color: var(--accent-pink); background: rgba(236,72,153,0.1); color: var(--accent-pink); }
+  #quiz-feedback {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    min-height: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .quiz-nav {
+    display: flex; gap: 0.75rem;
+  }
+
+  /* ===== CURIOSITIES ===== */
+  .curiosity-list {
+    display: flex; flex-direction: column; gap: 1rem;
+    margin-top: 2rem;
+  }
+  .curiosity-item {
+    background: var(--bg-card);
+    border-left: 3px solid var(--accent-green);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.1rem 1.5rem;
+    display: flex; gap: 1rem;
+    transition: border-color 0.3s;
+  }
+  .curiosity-item:nth-child(2n)   { border-color: var(--accent-blue); }
+  .curiosity-item:nth-child(3n)   { border-color: var(--accent-amber); }
+  .curiosity-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-faint);
+    min-width: 2rem;
+    line-height: 1;
+  }
+  .curiosity-text strong { color: var(--text-main); display: block; margin-bottom: 0.25rem; font-size: 0.95rem; }
+  .curiosity-text span  { color: var(--text-dim); font-size: 0.85rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+  }
+  footer span { color: var(--accent-green); }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    position: relative; z-index: 1;
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 1.5rem;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== CPU PIPELINE VIZ ===== */
+  .pipeline {
+    display: flex;
+    gap: 0;
+    margin-top: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .pipe-stage {
+    flex: 1; min-width: 100px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1rem 0.75rem;
+    text-align: center;
+    position: relative;
+  }
+  .pipe-stage:not(:last-child)::after {
+    content: '→';
+    position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+    color: var(--accent-green);
+    font-size: 1.1rem;
+    z-index: 2;
+  }
+  .pipe-stage:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+  .pipe-stage:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .pipe-icon  { font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .pipe-label { font-family: var(--font-display); font-size: 0.65rem; color: var(--accent-green); letter-spacing: 1px; }
+  .pipe-sub   { font-size: 0.7rem; color: var(--text-faint); margin-top: 0.2rem; }
+
+  /* pulse line between nav and hero */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-faint);
+    letter-spacing: 2px;
+  }
+  .scroll-arrow {
+    width: 1px; height: 48px;
+    background: linear-gradient(var(--accent-green), transparent);
+    animation: scrollpulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollpulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+  /* ===== INSTRUCTION ANIMATION ===== */
+  .instr-anim-demo {
+    display: flex; align-items: center; gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+  .anim-box {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-deep);
+    min-width: 48px;
+    text-align: center;
+    transition: all 0.4s;
+  }
+  .anim-box.lit {
+    border-color: var(--accent-green);
+    background: rgba(0,255,157,0.15);
+    color: var(--accent-green);
+    box-shadow: 0 0 10px rgba(0,255,157,0.3);
+  }
+  .anim-lbl { font-size: 0.62rem; color: var(--text-faint); display: block; text-align: center; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">ASM<span style="color:var(--text-faint)">://</span>EDU</span>
+  <ul class="nav-links">
+    <li><a href="#o-que-e">O que é?</a></li>
+    <li><a href="#cozinha">Analogia</a></li>
+    <li><a href="#registradores">Registradores</a></li>
+    <li><a href="#instrucoes">Instruções</a></li>
+    <li><a href="#simulador">Simulador</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">
+    <span class="blink"></span>
+    LINGUAGEM DE MÁQUINA · SIMPLIFICADA
+  </div>
+  <h1>Descomplicando<br>o <span class="green">Assembly</span></h1>
+  <p class="hero-sub">
+    Todo computador, tablet e smartphone executa bilhões de instrução simples por segundo.
+    Vamos entender <strong>como isso funciona</strong> — sem complicação.
+  </p>
+  <a href="#o-que-e" class="btn-primary">
+    ▶ &nbsp;Iniciar a Jornada
+  </a>
+  <div class="hero-cpu">
+    <div class="hero-chip"><span class="dot"></span> CPU: Intel x86-64</div>
+    <div class="hero-chip"><span class="dot"></span> Registradores: AX BX CX DX</div>
+    <div class="hero-chip"><span class="dot"></span> 3.8 GHz · 4 núcleos</div>
+    <div class="hero-chip"><span class="dot"></span> 100% interativo</div>
+  </div>
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 1: O QUE É ASSEMBLY -->
+<section id="o-que-e" class="fade-in">
+  <div class="section-label">Seção 01</div>
+  <h2>O que é <span style="color:var(--accent-green)">Assembly</span>?</h2>
+  <p class="subtitle">
+    Assembly é a linguagem de programação mais próxima do "idioma" do processador.
+    Cada instrução equivale a uma ação real que o hardware executa.
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-icon">🗣️</span>
+      <h3>Linguagem de Alto Nível</h3>
+      <p>Python, JavaScript, C++ — escritas para humanos. Uma linha de código pode virar centenas de instruções de máquina.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">⚙️</span>
+      <h3>Assembly</h3>
+      <p>A "língua franca" entre o humano e o hardware. Cada instrução corresponde exatamente a uma operação do processador.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🔢</span>
+      <h3>Linguagem de Máquina</h3>
+      <p>Zeros e uns puros. O que o processador realmente lê. Assembly é a versão legível disso.</p>
+    </div>
+  </div>
+
+  <!-- Pipeline de compilação -->
+  <div style="margin-top:2.5rem">
+    <div class="section-label" style="margin-bottom:1rem">Como seu código vira instruções</div>
+    <div class="pipeline">
+      <div class="pipe-stage">
+        <div class="pipe-icon">📝</div>
+        <div class="pipe-label">Código Fonte</div>
+        <div class="pipe-sub">Python / C++</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">🔄</div>
+        <div class="pipe-label">Compilador</div>
+        <div class="pipe-sub">Tradução</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">⚙️</div>
+        <div class="pipe-label">Assembly</div>
+        <div class="pipe-sub">MOV ADD SUB</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">🔢</div>
+        <div class="pipe-label">Binário</div>
+        <div class="pipe-sub">0101 1001…</div>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">🖥️</div>
+        <div class="pipe-label">CPU</div>
+        <div class="pipe-sub">Execução</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparação de código -->
+  <div style="margin-top:2.5rem">
+    <div class="section-label" style="margin-bottom:1rem">A mesma tarefa, linguagens diferentes</div>
+    <p style="color:var(--text-dim);font-size:0.88rem;margin-bottom:1rem">Objetivo: <strong style="color:var(--text-main)">somar dois números (5 + 3)</strong> e guardar o resultado.</p>
+    <div class="compare-wrap">
+      <div class="compare-box">
+        <div class="compare-header high">Python (Alto Nível)</div>
+        <div class="compare-code">
+          <span class="cm"># Simples e legível</span><br>
+          a = <span class="str">5</span><br>
+          b = <span class="str">3</span><br>
+          resultado = a + b<br>
+          <span class="fn">print</span>(resultado)
+        </div>
+      </div>
+      <div class="compare-box">
+        <div class="compare-header low">Assembly (Baixo Nível)</div>
+        <div class="compare-code">
+          <span class="cm">; Mais verboso, mais poderoso</span><br>
+          <span class="kw">MOV</span> <span class="reg">AX</span>, <span class="str">5</span>  <span class="cm">; AX ← 5</span><br>
+          <span class="kw">MOV</span> <span class="reg">BX</span>, <span class="str">3</span>  <span class="cm">; BX ← 3</span><br>
+          <span class="kw">ADD</span> <span class="reg">AX</span>, <span class="reg">BX</span> <span class="cm">; AX ← AX+BX</span><br>
+          <span class="cm">; AX agora vale 8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 2: ANALOGIA DA COZINHA -->
+<section id="cozinha" class="fade-in">
+  <div class="section-label">Seção 02</div>
+  <h2>O Computador como uma <span style="color:var(--accent-amber)">Cozinha</span> 🍳</h2>
+  <p class="subtitle">
+    Difícil imaginar o que acontece dentro de um chip? Pense assim: um computador funciona
+    exatamente como uma cozinha muito bem organizada!
+  </p>
+
+  <div class="kitchen-grid">
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">👨‍🍳</span>
+      <div class="kitchen-eq">CPU =</div>
+      <h3>O Cozinheiro</h3>
+      <p>Executa as operações. Rápido, preciso e segue ordens à risca.</p>
+    </div>
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">🪣</span>
+      <div class="kitchen-eq">RAM =</div>
+      <h3>A Bancada</h3>
+      <p>Onde os ingredientes ficam durante o preparo. Temporária, mas acessível rápido.</p>
+    </div>
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">📋</span>
+      <div class="kitchen-eq">Programa =</div>
+      <h3>A Receita</h3>
+      <p>Lista de instruções passo a passo. O cozinheiro segue cada linha com cuidado.</p>
+    </div>
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">🥕</span>
+      <div class="kitchen-eq">Dados =</div>
+      <h3>Os Ingredientes</h3>
+      <p>Os números e informações que o programa processa e transforma.</p>
+    </div>
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">🙌</span>
+      <div class="kitchen-eq">Registradores =</div>
+      <h3>As Mãos</h3>
+      <p>O que o cozinheiro segura no momento. Ultrarápido, mas só cabe pouca coisa.</p>
+    </div>
+    <div class="kitchen-item">
+      <span class="kitchen-emoji">🗄️</span>
+      <div class="kitchen-eq">HD/SSD =</div>
+      <h3>A Despensa</h3>
+      <p>Guarda tudo a longo prazo. Muito espaço, mas mais lento para acessar.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:1.5rem;">
+    <div style="font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-amber);letter-spacing:2px;margin-bottom:1rem;">💡 ANALOGIA EM AÇÃO</div>
+    <p style="color:var(--text-dim);font-size:0.9rem;line-height:1.8;">
+      Imagine que você quer fazer uma receita de bolo. Você pega os ingredientes da despensa (HD), 
+      coloca na bancada (RAM), e usa suas mãos (registradores) para misturar enquanto segue a receita (programa). 
+      O cozinheiro (CPU) faz tudo isso em <strong style="color:var(--accent-green)">bilhões de "mexidas" por segundo</strong>!
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 3: REGISTRADORES -->
+<section id="registradores" class="fade-in">
+  <div class="section-label">Seção 03</div>
+  <h2><span style="color:var(--accent-green)">Registradores</span> — As Caixinhas Ultrarápidas</h2>
+  <p class="subtitle">
+    Registradores são espaços de memória dentro do próprio processador.
+    São minúsculos, mas incrivelmente rápidos — muito mais rápidos que a RAM.
+  </p>
+
+  <div class="registers-wrap" id="regs-display">
+    <div class="register-box">
+      <div class="reg-name">AX</div>
+      <div class="reg-full">ACCUMULATOR REGISTER</div>
+      <div class="reg-bits" id="bits-ax"></div>
+      <div class="reg-value" id="val-ax">= 0</div>
+      <div class="reg-desc">Usado para operações aritméticas. O registrador mais utilizado em cálculos e resultados.</div>
+    </div>
+    <div class="register-box">
+      <div class="reg-name">BX</div>
+      <div class="reg-full">BASE REGISTER</div>
+      <div class="reg-bits" id="bits-bx"></div>
+      <div class="reg-value" id="val-bx">= 0</div>
+      <div class="reg-desc">Usado como base para endereçamento de memória e como registrador de propósito geral.</div>
+    </div>
+    <div class="register-box">
+      <div class="reg-name">CX</div>
+      <div class="reg-full">COUNTER REGISTER</div>
+      <div class="reg-bits" id="bits-cx"></div>
+      <div class="reg-value" id="val-cx">= 0</div>
+      <div class="reg-desc">Contador em loops e operações de repetição. Ideal para controlar quantas vezes algo se repete.</div>
+    </div>
+    <div class="register-box">
+      <div class="reg-name">DX</div>
+      <div class="reg-full">DATA REGISTER</div>
+      <div class="reg-bits" id="bits-dx"></div>
+      <div class="reg-value" id="val-dx">= 0</div>
+      <div class="reg-desc">Armazena dados temporários e é parceiro do AX em multiplicações e divisões maiores.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem; padding:1rem 1.5rem; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.78rem; color:var(--text-dim);">
+    💡 Cada registrador tem <span style="color:var(--accent-green)">16 bits</span> — pode guardar valores de 0 até 65.535.
+    Processadores modernos têm registradores de <span style="color:var(--accent-amber)">64 bits</span> (RAX, RBX...) — valores até 18 quintilhões!
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 4: INSTRUÇÕES -->
+<section id="instrucoes" class="fade-in">
+  <div class="section-label">Seção 04</div>
+  <h2>Instruções <span style="color:var(--accent-green)">Básicas</span></h2>
+  <p class="subtitle">
+    O Assembly tem centenas de instruções, mas três delas explicam quase tudo:
+    mover, somar e subtrair.
+  </p>
+
+  <div class="instr-list">
+
+    <!-- MOV -->
+    <div class="instr-card">
+      <div class="instr-badge mov">MOV</div>
+      <div class="instr-body">
+        <h3 style="color:var(--accent-blue)">Mover / Copiar um valor</h3>
+        <p>Coloca um valor em um registrador, ou copia de um registrador para outro. Pense como "guardar nas mãos".</p>
+        <div class="instr-example">MOV AX, 42 &nbsp;&nbsp;<span style="color:var(--text-faint)">; AX recebe o valor 42</span></div>
+        <div class="instr-anim-demo" id="mov-demo">
+          <div>
+            <div class="anim-box" id="movSrc">42</div>
+            <span class="anim-lbl">valor</span>
+          </div>
+          <span class="arrow">──▶</span>
+          <div>
+            <div class="anim-box" id="movDst">0</div>
+            <span class="anim-lbl">AX</span>
+          </div>
+          <button onclick="animMov()" class="sim-btn" style="margin-left:0.5rem">▶ Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD -->
+    <div class="instr-card">
+      <div class="instr-badge add">ADD</div>
+      <div class="instr-body">
+        <h3 style="color:var(--accent-green)">Somar dois valores</h3>
+        <p>Soma o valor de dois registradores (ou um registrador e um número) e guarda o resultado no primeiro.</p>
+        <div class="instr-example">ADD AX, BX &nbsp;&nbsp;<span style="color:var(--text-faint)">; AX ← AX + BX</span></div>
+        <div class="instr-anim-demo" id="add-demo">
+          <div>
+            <div class="anim-box" id="addAX">10</div>
+            <span class="anim-lbl">AX</span>
+          </div>
+          <span class="arrow">+</span>
+          <div>
+            <div class="anim-box" id="addBX">5</div>
+            <span class="anim-lbl">BX</span>
+          </div>
+          <span class="arrow">──▶</span>
+          <div>
+            <div class="anim-box" id="addResult">?</div>
+            <span class="anim-lbl">AX (resultado)</span>
+          </div>
+          <button onclick="animAdd()" class="sim-btn" style="margin-left:0.5rem">▶ Ver</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB -->
+    <div class="instr-card">
+      <div class="instr-badge sub">SUB</div>
+      <div class="instr-body">
+        <h3 style="color:var(--accent-pink)">Subtrair dois valores</h3>
+        <p>Subtrai o segundo valor do primeiro e guarda o resultado. Funciona da mesma forma que o ADD, mas com subtração.</p>
+        <div class="instr-example">SUB AX, CX &nbsp;&nbsp;<span style="color:var(--text-faint)">; AX ← AX - CX</span></div>
+        <div class="instr-anim-demo" id="sub-demo">
+          <div>
+            <div class="anim-box" id="subAX">20</div>
+            <span class="anim-lbl">AX</span>
+          </div>
+          <span class="arrow">−</span>
+          <div>
+            <div class="anim-box" id="subCX">7</div>
+            <span class="anim-lbl">CX</span>
+          </div>
+          <span class="arrow">──▶</span>
+          <div>
+            <div class="anim-box" id="subResult">?</div>
+            <span class="anim-lbl">AX (resultado)</span>
+          </div>
+          <button onclick="animSub()" class="sim-btn" style="margin-left:0.5rem">▶ Ver</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 5: SIMULADOR -->
+<section id="simulador" class="fade-in">
+  <div class="section-label">Seção 05</div>
+  <h2>Simulador <span style="color:var(--accent-green)">Interativo</span></h2>
+  <p class="subtitle">
+    Digite instruções Assembly reais e veja os registradores mudando em tempo real.
+    Suporta MOV, ADD e SUB.
+  </p>
+
+  <div id="simulator">
+    <div class="sim-header">
+      <div class="sim-dot r"></div>
+      <div class="sim-dot y"></div>
+      <div class="sim-dot g"></div>
+      <span class="sim-title">assembly_simulator.asm — modo interativo</span>
+    </div>
+    <div class="sim-body">
+      <div class="sim-editor">
+        <div class="sim-toolbar">
+          <button class="sim-btn run"  onclick="runAll()">▶ Executar Tudo</button>
+          <button class="sim-btn step" onclick="stepExec()">⏭ Passo a Passo</button>
+          <button class="sim-btn reset" onclick="resetSim()">⟳ Resetar</button>
+        </div>
+        <textarea id="code-input" spellcheck="false" placeholder="; Digite suas instruções aqui
+; Exemplo:
+MOV AX, 10
+MOV BX, 5
+ADD AX, BX
+SUB AX, 3"></textarea>
+        <div class="sim-log" id="sim-log">
+          <div class="log-line inf">// Simulador pronto. Digite instruções e clique em Executar.</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <div class="sim-registers">
+          <div class="sim-reg-title">REGISTRADORES</div>
+          <div class="sim-reg-row" id="srow-ax">
+            <span class="sim-reg-name">AX</span>
+            <div class="sim-reg-bar-wrap"><div class="sim-reg-bar" id="sbar-ax"></div></div>
+            <span class="sim-reg-val" id="sval-ax">0</span>
+          </div>
+          <div class="sim-reg-row" id="srow-bx">
+            <span class="sim-reg-name">BX</span>
+            <div class="sim-reg-bar-wrap"><div class="sim-reg-bar" id="sbar-bx"></div></div>
+            <span class="sim-reg-val" id="sval-bx">0</span>
+          </div>
+          <div class="sim-reg-row" id="srow-cx">
+            <span class="sim-reg-name">CX</span>
+            <div class="sim-reg-bar-wrap"><div class="sim-reg-bar" id="sbar-cx"></div></div>
+            <span class="sim-reg-val" id="sval-cx">0</span>
+          </div>
+          <div class="sim-reg-row" id="srow-dx">
+            <span class="sim-reg-name">DX</span>
+            <div class="sim-reg-bar-wrap"><div class="sim-reg-bar" id="sbar-dx"></div></div>
+            <span class="sim-reg-val" id="sval-dx">0</span>
+          </div>
+        </div>
+        <div class="sim-examples">
+          <div class="sim-ex-title">EXEMPLOS PRONTOS</div>
+          <button class="sim-ex-btn" onclick="loadExample(0)">📌 Soma simples (5+3)</button>
+          <button class="sim-ex-btn" onclick="loadExample(1)">📌 Contador (CX = AX-BX)</button>
+          <button class="sim-ex-btn" onclick="loadExample(2)">📌 Operações encadeadas</button>
+          <button class="sim-ex-btn" onclick="loadExample(3)">📌 Uso dos 4 registradores</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 6: APLICAÇÕES REAIS -->
+<section id="aplicacoes" class="fade-in">
+  <div class="section-label">Seção 06</div>
+  <h2>Aplicações <span style="color:var(--accent-blue)">Reais</span></h2>
+  <p class="subtitle">
+    Assembly não é só teoria! Ele está por trás das coisas que você usa todo dia.
+  </p>
+
+  <div class="apps-grid">
+    <div class="app-card">
+      <div class="app-icon">🎮</div>
+      <h3>Jogos Digitais</h3>
+      <p>A posição de cada personagem, física de colisões, renderização de pixels — tudo vira operações MOV, ADD e SUB no nível mais baixo. Jogos otimizados em Assembly rodam muito mais rápido.</p>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🤖</div>
+      <h3>Sistemas Embarcados</h3>
+      <p>Microcontroladores em geladeiras, carros e elevadores são programados em Assembly. Cada byte de memória importa quando os recursos são limitados.</p>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🔐</div>
+      <h3>Cibersegurança</h3>
+      <p>Hackers e analistas de segurança leem Assembly para entender como malwares funcionam. Engenharia reversa é ler o Assembly de um programa sem ter o código-fonte.</p>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🧠</div>
+      <h3>Inteligência Artificial</h3>
+      <p>Operações de redes neurais (multiplicações de matrizes) são otimizadas em Assembly usando instruções especiais como AVX, que processam vários números ao mesmo tempo.</p>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">📱</div>
+      <h3>Sistemas Operacionais</h3>
+      <p>O kernel do Linux e do Windows têm partes escritas em Assembly. O momento em que o computador "acorda" ao ligar — o boot — é 100% Assembly.</p>
+    </div>
+    <div class="app-card">
+      <div class="app-icon">🚀</div>
+      <h3>Exploração Espacial</h3>
+      <p>Os computadores das naves espaciais e satélites rodam Assembly. O código que pousou a sonda Curiosity em Marte tinha instruções Assembly para controle preciso de motores.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 7: QUIZ -->
+<section id="quiz" class="fade-in">
+  <div class="section-label">Seção 07</div>
+  <h2>Quiz <span style="color:var(--accent-amber)">Interativo</span> 🧠</h2>
+  <p class="subtitle">Teste o que você aprendeu! Responda as perguntas e veja sua pontuação.</p>
+
+  <div id="quiz-wrap">
+    <div class="quiz-score-bar">
+      <span class="quiz-score-label">PONTOS:</span>
+      <span class="quiz-score-num" id="quiz-score">0</span>
+      <span class="quiz-score-label" style="margin-left:auto" id="quiz-progress">Pergunta 1 de 8</span>
+    </div>
+    <div id="quiz-question">Carregando pergunta...</div>
+    <div class="quiz-options" id="quiz-options"></div>
+    <div id="quiz-feedback"></div>
+    <div class="quiz-nav">
+      <button class="sim-btn step" id="btn-next" onclick="nextQuestion()" style="display:none">Próxima →</button>
+      <button class="sim-btn run" id="btn-restart" onclick="restartQuiz()" style="display:none">↺ Jogar novamente</button>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SEÇÃO 8: CURIOSIDADES -->
+<section id="curiosidades" class="fade-in">
+  <div class="section-label">Seção 08</div>
+  <h2>Curiosidades <span style="color:var(--accent-pink)">Incríveis</span> ⚡</h2>
+  <p class="subtitle">Fatos que vão te surpreender sobre processadores e Assembly.</p>
+
+  <div class="curiosity-list">
+    <div class="curiosity-item">
+      <span class="curiosity-num">01</span>
+      <div class="curiosity-text">
+        <strong>Um processador moderno executa bilhões de instruções por segundo</strong>
+        <span>Um Intel Core i9 a 5 GHz executa cerca de 5 bilhões de instruções por segundo — cada instrução Assembly é realizada em menos de 1 nanossegundo!</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">02</span>
+      <div class="curiosity-text">
+        <strong>O primeiro vírus de computador era em Assembly</strong>
+        <span>O vírus "Brain" (1986), criado por dois irmãos paquistaneses, era escrito inteiramente em Assembly. Ele infectava disquetes e exibia o nome deles.</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">03</span>
+      <div class="curiosity-text">
+        <strong>A Apollo 11 usou linguagem Assembly</strong>
+        <span>O computador que levou o homem à Lua (AGC) rodava Assembly com apenas 4 KB de memória RAM e 72 KB de armazenamento — menos que um único arquivo de texto hoje!</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">04</span>
+      <div class="curiosity-text">
+        <strong>Registradores são mais rápidos que a luz (comparativamente)</strong>
+        <span>Acessar um dado na RAM leva cerca de 100 nanossegundos. Um registrador responde em menos de 1 nanossegundo. É como comparar um e-mail com um pensamento.</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">05</span>
+      <div class="curiosity-text">
+        <strong>O Doom (1993) foi otimizado manualmente em Assembly</strong>
+        <span>John Carmack, criador do Doom, escreveu partes críticas do motor gráfico em Assembly para rodar em PCs fracos da época. Esse jogo definiu o termo "otimização".</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">06</span>
+      <div class="curiosity-text">
+        <strong>Todo código que você usa já foi Assembly</strong>
+        <span>Quando você abre o WhatsApp, clica em um link ou assiste Netflix, o código final executado pelo processador é sempre Assembly — independente de qual linguagem o programa foi escrito.</span>
+      </div>
+    </div>
+    <div class="curiosity-item">
+      <span class="curiosity-num">07</span>
+      <div class="curiosity-text">
+        <strong>Há mais de 1000 instruções x86</strong>
+        <span>A arquitetura x86 (usada em PCs) tem mais de 1.000 instruções Assembly diferentes. Na prática, a maioria dos programas usa menos de 50 delas regularmente.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Desenvolvido para a <span>Feira de Extensão Universitária</span> · Descomplicando o Assembly</p>
+  <p style="margin-top:0.5rem">Educação em Arquitetura de Computadores · <span>100% local, sem backend</span></p>
+</footer>
+
+<!-- ==============================
+     JAVASCRIPT
+     ============================== -->
+<script>
+// ===== PROGRESS BAR =====
+window.addEventListener('scroll', () => {
+  const prog = document.getElementById('progress-bar');
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+  prog.style.transform = `scaleX(${Math.min(pct, 1)})`;
+});
+
+// ===== FADE IN ON SCROLL =====
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== REGISTERS DISPLAY =====
+function toBits(n, count = 16) {
+  const s = (n >>> 0).toString(2).padStart(count, '0');
+  return s.slice(-count);
+}
+function renderBits(elId, val) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const bits = toBits(val);
+  el.innerHTML = bits.split('').map((b,i) =>
+    `<div class="reg-bit${b==='1'?' on':''}">${b}</div>`
+  ).join('');
+}
+function initRegs() {
+  ['ax','bx','cx','dx'].forEach(r => {
+    renderBits(`bits-${r}`, 0);
+    const v = document.getElementById(`val-${r}`);
+    if (v) v.textContent = '= 0';
+  });
+}
+initRegs();
+
+// ===== INSTRUCTION ANIMATIONS =====
+function animMov() {
+  const src = document.getElementById('movSrc');
+  const dst = document.getElementById('movDst');
+  src.classList.add('lit');
+  setTimeout(() => {
+    dst.textContent = '42';
+    dst.classList.add('lit');
+    src.classList.remove('lit');
+    renderBits('bits-ax', 42);
+    document.getElementById('val-ax').textContent = '= 42';
+  }, 600);
+  setTimeout(() => dst.classList.remove('lit'), 1500);
+}
+
+function animAdd() {
+  const ax = document.getElementById('addAX');
+  const bx = document.getElementById('addBX');
+  const res = document.getElementById('addResult');
+  ax.classList.add('lit'); bx.classList.add('lit');
+  setTimeout(() => {
+    res.textContent = '15';
+    res.classList.add('lit');
+    ax.textContent = '15';
+    ax.classList.remove('lit'); bx.classList.remove('lit');
+  }, 700);
+  setTimeout(() => res.classList.remove('lit'), 1600);
+}
+
+function animSub() {
+  const ax = document.getElementById('subAX');
+  const cx = document.getElementById('subCX');
+  const res = document.getElementById('subResult');
+  ax.classList.add('lit'); cx.classList.add('lit');
+  setTimeout(() => {
+    res.textContent = '13';
+    res.classList.add('lit');
+    ax.textContent = '13';
+    ax.classList.remove('lit'); cx.classList.remove('lit');
+  }, 700);
+  setTimeout(() => res.classList.remove('lit'), 1600);
+}
+
+// ===== SIMULATOR =====
+const simRegs = { AX: 0, BX: 0, CX: 0, DX: 0 };
+let simLines = [];
+let simStep  = 0;
+
+const examples = [
+  `; Exemplo 1: Soma simples
+MOV AX, 5
+MOV BX, 3
+ADD AX, BX`,
+  `; Exemplo 2: Contador
+MOV AX, 20
+MOV BX, 8
+SUB AX, BX
+MOV CX, AX`,
+  `; Exemplo 3: Operações encadeadas
+MOV AX, 100
+SUB AX, 30
+ADD AX, 15
+MOV BX, AX
+SUB BX, 10`,
+  `; Exemplo 4: Todos os registradores
+MOV AX, 10
+MOV BX, 20
+MOV CX, 30
+MOV DX, 40
+ADD AX, BX
+ADD CX, DX
+SUB BX, 5`
+];
+
+function loadExample(i) {
+  document.getElementById('code-input').value = examples[i];
+  resetSim();
+}
+
+function log(msg, cls='') {
+  const logEl = document.getElementById('sim-log');
+  const div = document.createElement('div');
+  div.className = `log-line ${cls}`;
+  div.textContent = msg;
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+function updateSimDisplay(reg, newVal) {
+  const row = document.getElementById(`srow-${reg.toLowerCase()}`);
+  const bar = document.getElementById(`sbar-${reg.toLowerCase()}`);
+  const val = document.getElementById(`sval-${reg.toLowerCase()}`);
+  if (!row) return;
+
+  // also update the top register display
+  renderBits(`bits-${reg.toLowerCase()}`, newVal < 0 ? 0 : newVal);
+  const vEl = document.getElementById(`val-${reg.toLowerCase()}`);
+  if (vEl) vEl.textContent = `= ${newVal}`;
+
+  val.textContent = newVal;
+  const pct = Math.min(Math.abs(newVal) / 255 * 100, 100);
+  bar.style.width = pct + '%';
+  row.classList.remove('changed');
+  void row.offsetWidth;
+  row.classList.add('changed');
+}
+
+function parseLine(line) {
+  line = line.replace(/;.*$/, '').trim();
+  if (!line) return null;
+  const parts = line.split(/[\s,]+/).filter(Boolean);
+  return parts;
+}
+
+function resolveVal(tok) {
+  if (['AX','BX','CX','DX'].includes(tok.toUpperCase())) return simRegs[tok.toUpperCase()];
+  const n = parseInt(tok);
+  if (isNaN(n)) throw new Error(`Valor inválido: "${tok}"`);
+  return n;
+}
+
+function execLine(line) {
+  const parts = parseLine(line);
+  if (!parts) return null;
+  const op  = parts[0].toUpperCase();
+  const dst = parts[1] ? parts[1].toUpperCase() : null;
+  const src = parts[2] ? parts[2].toUpperCase() : null;
+
+  if (!['MOV','ADD','SUB'].includes(op)) throw new Error(`Instrução desconhecida: "${op}"`);
+  if (!dst || !['AX','BX','CX','DX'].includes(dst)) throw new Error(`Registrador inválido: "${dst}"`);
+
+  let result;
+  if (op === 'MOV') {
+    result = resolveVal(src || parts[2]);
+    simRegs[dst] = result;
+  } else if (op === 'ADD') {
+    result = simRegs[dst] + resolveVal(src);
+    simRegs[dst] = result;
+  } else if (op === 'SUB') {
+    result = simRegs[dst] - resolveVal(src);
+    simRegs[dst] = result;
+  }
+  return { op, dst, result };
+}
+
+function runAll() {
+  resetSim(true);
+  const code = document.getElementById('code-input').value;
+  const lines = code.split('\n');
+  let errors = 0;
+  lines.forEach((line, i) => {
+    const clean = line.replace(/;.*$/, '').trim();
+    if (!clean) return;
+    try {
+      const r = execLine(clean);
+      if (r) {
+        updateSimDisplay(r.dst, r.result);
+        log(`[linha ${i+1}] ${clean}  →  ${r.dst} = ${r.result}`, 'ok');
+      }
+    } catch(e) {
+      log(`[linha ${i+1}] ERRO: ${e.message}`, 'err');
+      errors++;
+    }
+  });
+  if (errors === 0) log('✅ Execução concluída!', 'ok');
+}
+
+function stepExec() {
+  if (simLines.length === 0) {
+    simLines = document.getElementById('code-input').value.split('\n');
+    simStep  = 0;
+    resetSim(true);
+    log('--- Modo passo a passo iniciado ---', 'inf');
+  }
+  while (simStep < simLines.length) {
+    const line = simLines[simStep];
+    simStep++;
+    const clean = line.replace(/;.*$/, '').trim();
+    if (!clean) continue;
+    try {
+      const r = execLine(clean);
+      if (r) {
+        updateSimDisplay(r.dst, r.result);
+        log(`[passo ${simStep}] ${clean}  →  ${r.dst} = ${r.result}`, 'ok');
+      }
+    } catch(e) {
+      log(`[passo ${simStep}] ERRO: ${e.message}`, 'err');
+    }
+    return;
+  }
+  log('🏁 Fim do programa.', 'inf');
+  simLines = [];
+}
+
+function resetSim(keepCode = false) {
+  ['AX','BX','CX','DX'].forEach(r => { simRegs[r] = 0; });
+  ['ax','bx','cx','dx'].forEach(r => {
+    updateSimDisplay(r.toUpperCase(), 0);
+    const row = document.getElementById(`srow-${r}`);
+    if (row) row.classList.remove('changed');
+  });
+  initRegs();
+  simLines = []; simStep = 0;
+  if (!keepCode) {
+    const logEl = document.getElementById('sim-log');
+    logEl.innerHTML = '<div class="log-line inf">// Simulador resetado. Pronto para novos comandos.</div>';
+  }
+}
+
+// ===== QUIZ =====
+const questions = [
+  {
+    q: "O que significa MOV em Assembly?",
+    opts: ["Mover ou copiar um valor para um registrador","Multiplicar dois valores","Modificar a memória RAM","Mover o ponteiro do mouse"],
+    ans: 0,
+    exp: "✅ MOV copia um valor para dentro de um registrador. Por exemplo: MOV AX, 5 coloca o número 5 no registrador AX."
+  },
+  {
+    q: "Qual é a analogia correta para os REGISTRADORES na metáfora da cozinha?",
+    opts: ["A despensa (armazena muito)","A bancada (memória temporária)","As mãos do cozinheiro","A receita do prato"],
+    ans: 2,
+    exp: "✅ Registradores são como as mãos do cozinheiro — carregam apenas o que está sendo usado agora, mas são ultrarrápidos!"
+  },
+  {
+    q: "Qual instrução usamos para SOMAR dois registradores?",
+    opts: ["MOV","SUB","SUM","ADD"],
+    ans: 3,
+    exp: "✅ ADD é a instrução de adição. Exemplo: ADD AX, BX soma AX com BX e guarda o resultado em AX."
+  },
+  {
+    q: "Se executarmos: MOV AX, 10 / SUB AX, 4, qual será o valor de AX?",
+    opts: ["4","14","6","10"],
+    ans: 2,
+    exp: "✅ Primeiro AX recebe 10 (MOV AX, 10). Depois subtraímos 4 de AX (SUB AX, 4). Resultado: 10 − 4 = 6."
+  },
+  {
+    q: "O que é Assembly?",
+    opts: [
+      "Uma linguagem de alto nível como Python",
+      "A linguagem mais próxima do hardware, com instruções que correspondem a operações reais do processador",
+      "Um sistema operacional para computadores",
+      "Um programa de edição de imagens"
+    ],
+    ans: 1,
+    exp: "✅ Assembly é a linguagem que fica entre o código de alto nível (Python, Java) e a linguagem de máquina (zeros e uns)."
+  },
+  {
+    q: "Qual registrador é conhecido como 'acumulador' — o mais usado em cálculos?",
+    opts: ["BX","CX","DX","AX"],
+    ans: 3,
+    exp: "✅ AX é o registrador acumulador! O nome vem de 'accumulate', pois acumula resultados de operações aritméticas."
+  },
+  {
+    q: "Na metáfora da cozinha, o que representa a MEMÓRIA RAM?",
+    opts: ["A despensa (armazenamento longo prazo)","O cozinheiro (processador)","A bancada de trabalho (onde tudo fica durante o preparo)","A receita (programa)"],
+    ans: 2,
+    exp: "✅ RAM é a bancada! É onde os dados ficam disponíveis enquanto o programa está rodando — rápida, mas temporária."
+  },
+  {
+    q: "Após executar: MOV AX, 5 / MOV BX, 3 / ADD AX, BX, qual é o valor de AX?",
+    opts: ["3","5","8","15"],
+    ans: 2,
+    exp: "✅ AX começa com 5, BX recebe 3. Depois ADD AX, BX soma: AX = 5 + 3 = 8. "
+  }
+];
+
+let qIdx = 0, score = 0, answered = false;
+
+function renderQuestion() {
+  const q = questions[qIdx];
+  document.getElementById('quiz-question').textContent = q.q;
+  document.getElementById('quiz-progress').textContent = `Pergunta ${qIdx+1} de ${questions.length}`;
+  document.getElementById('quiz-feedback').textContent = '';
+  document.getElementById('btn-next').style.display = 'none';
+  document.getElementById('btn-restart').style.display = 'none';
+  answered = false;
+
+  const optsEl = document.getElementById('quiz-options');
+  optsEl.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.onclick = () => selectAnswer(i);
+    optsEl.appendChild(btn);
+  });
+}
+
+function selectAnswer(i) {
+  if (answered) return;
+  answered = true;
+  const q = questions[qIdx];
+  const opts = document.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('quiz-feedback');
+
+  opts[q.ans].classList.add('correct');
+  if (i !== q.ans) {
+    opts[i].classList.add('wrong');
+    fb.textContent = `❌ Errado! ${q.exp}`;
+    fb.style.color = 'var(--accent-pink)';
+  } else {
+    score++;
+    document.getElementById('quiz-score').textContent = score;
+    fb.textContent = q.exp;
+    fb.style.color = 'var(--accent-green)';
+  }
+  opts.forEach(o => o.style.cursor = 'default');
+
+  if (qIdx + 1 < questions.length) {
+    document.getElementById('btn-next').style.display = 'inline-flex';
+  } else {
+    setTimeout(showResult, 600);
+  }
+}
+
+function nextQuestion() {
+  qIdx++;
+  renderQuestion();
+}
+
+function showResult() {
+  const pct = Math.round(score / questions.length * 100);
+  document.getElementById('quiz-question').textContent =
+    `Você terminou o quiz! Pontuação: ${score}/${questions.length} (${pct}%)`;
+  document.getElementById('quiz-options').innerHTML = '';
+  const fb = document.getElementById('quiz-feedback');
+  if (pct >= 80) {
+    fb.textContent = '🏆 Excelente! Você arrasou no Assembly!';
+    fb.style.color = 'var(--accent-green)';
+  } else if (pct >= 50) {
+    fb.textContent = '👍 Bom trabalho! Revise as seções e tente de novo.';
+    fb.style.color = 'var(--accent-amber)';
+  } else {
+    fb.textContent = '📚 Continue estudando! Role para cima e reveja as seções.';
+    fb.style.color = 'var(--accent-pink)';
+  }
+  document.getElementById('btn-next').style.display = 'none';
+  document.getElementById('btn-restart').style.display = 'inline-flex';
+}
+
+function restartQuiz() {
+  qIdx = 0; score = 0;
+  document.getElementById('quiz-score').textContent = '0';
+  renderQuestion();
+}
+
+renderQuestion();
+</script>
+</body>
+</html>
