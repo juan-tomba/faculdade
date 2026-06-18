@@ -35,7 +35,7 @@
 
 ## Funções de Mapeamento
 
-- Onde os blocos da MP são alocados nas caches
+- Determina onde os blocos da MP são alocados nas caches
 - 64 bytes = 6 bits
 - Mapeamento Direto
 - Mapeamento Associativo total
@@ -43,8 +43,50 @@
 
 ## Mapeamento Direto
 
-- Mapeia diretamente um bloco de MP em uma linha da cache
+- Mapeia o bloco do MP sempre na mesma linha da cache segundo a função resto
 	- i = j mod m
 	- l = n° da linha da cache onde será alocado
 	- j = n° do bloco da MP
 	- m = n° de linhas da cache
+
+## Mapeamento totalmente associativo
+
+- Os blocos da MP podem ser mapeados em *qualquer* linha da cache
+
+## Mapeamento associativo por conjunto
+
+- Dividir a cache em *v* conjunto de *k* linhas cada conjunto
+- Mapeia diretamente no conjunto e dentro do conjunto pode mapear em qualquer linha
+- número de linhas da cache = v * k
+
+## Algoritmo de Substituição
+
+- Mapeamento direto a função hash
+- Mapeamento
+	- Totalmente Associativo
+	- Associativo por Conjunto
+		- FIFO: Linha que entrava primeiro
+		- LRU (Least Recently Used) : linha que há mais tempo não é referenciada
+		- LFU (Least Frequently Used) : linha que foi referenciada menos vezes
+		- Aleatórias escolhas : linha escolhida aleatoriamente
+
+## Política de escrita
+
+### Write back
+
+- Atualiza o nível onde o dado foi inventado e indica que a linha está suja (dirty)
+
+### Write through
+
+- Atualiza o nível onde o dado foi encontrado e o nível inferior
+
+### Write miss
+
+#### Write Allocate
+
+- Read miss (traz para a cache o dado)
+- Write hit (escreve já tendo o dado na cache)
+
+#### Write no-allocate
+
+- Escreve no nível que achar o dado
