@@ -1,0 +1,6 @@
+-  23/09 - Primeira Prova;
+-  23/11 - Segunda Prova;
+-  Sobre a aplicação da prova:
+	-  Livro texto
+	- 2 folhas de sulfite **a mão**
+-  *Livro Principal* : Sistemas Operacionais Modernos - Tanembaum

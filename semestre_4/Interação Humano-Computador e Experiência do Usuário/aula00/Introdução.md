@@ -1,0 +1,9 @@
+-  "Projeto para o bem"
+	- min 3, max 4 integrantes
+	- Público-alvo: 
+		-  Organizações sem fins lucrativos/beneficentes
+		-  Minorias e/ou grupos vulneráveis
+- NF = 0,7 Trabalho em grupo + 0,3 Trabalhos individuais
+- Pitch do projeto 13/08 (Quinta)
+	-  Preferencia: Cliente já definido
+- 
