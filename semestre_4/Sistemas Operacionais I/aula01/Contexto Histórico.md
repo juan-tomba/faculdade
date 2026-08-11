@@ -24,3 +24,4 @@
 	-  Ao contrário da execução sequencial (faz uma tarefa, termina e vai pra próxima), executa um pouco de cada tarefa
 	- Cada programa utiliza o processador em pequenos intervalos de tempo
 
+
