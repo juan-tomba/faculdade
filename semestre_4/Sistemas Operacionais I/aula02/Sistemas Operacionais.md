@@ -19,7 +19,12 @@ entre o usuário e esses dispositivos**
 -  Acesso ao sistema
 -  Detecção de erros
 
-# Sistemas Operacionais
+# Sistemas Computacionais
+
+- Consiste de:
+	- Um ou mais processadores
+	- Memória principal
+	- Discos, impressoras, teclado, monitor, interfaces de redes e outros dispositivos de E/S
 
 -  *Sistemas sem SO*
 	-  Gasto maior no tempo de programação
@@ -48,9 +53,9 @@ entre o usuário e esses dispositivos**
 ## Exemplo
 
 Como **Máquina Estendida**
--  Como é feita a E/S de  um disco
+-  Como é feita a E/S de um disco
 	-  SO : Baixo nível
-		-  Número de parametros
+		-  Número de parâmetros
 		- Endereço do bloco a ser lido
 		-  Número de setores por trilha
 		-  Modo de gravação
@@ -64,22 +69,40 @@ Como **Máquina Estendida**
 	-  Se dois dispositivos querem utilizar o mesmo recurso, o SO define a ordem para que ambos consigam acesso
 	-  Uso do HD e memória
 
+# Tipos de SO
 ## Classificação quanto ao *compartilhamento de hardware*
 
-- **Sistemas Operacionais Monoprogramados**
+- **Sistemas Operacionais Monoprogramados ou Monotarefa**
 	- Só permite um programa ativo em um dado período de tempo, o qual permanece em sua memória até seu término
+	- Se caracterizam por permitir que o processador, a memória e os periféricos permaneçam exclusivamente dedicados a execução de um único programa. Recursos são mal utilizados, entretanto, é fácil de ser implementado.
 	- Ex: DOS
--  **Sistemas Operacionais Multiprogramados**
+-  **Sistemas Operacionais Multiprogramados ou Multitarefa** 
 	-  Mantém mais que um programa simultaneamente na memória principal, para permitir o compartilhamento efetivo de tempo de CPU e demais recursos
+	- Neste S.O. vários programas dividem os recursos do sistema. As vantagens do uso destes sistemas são o aumento da produtividade dos seus usuários e a redução de custos a partir do compartilhamento dos diversos recursos do sistema.
 	- Ex: Windows NT, UNIX
 
 ## Classificação quanto a *Interação permitida*
 
+- **SO para processamento em Batch (lote)**
+	- Jobs dos usuários são submetidos em ordem sequencial para a execução 
+	- Não existe interação entre usuários e o job durante a execução.
+
 -  **SO interativo**
+	- O sistema permite que os usuários interajam com suas computações na forma de diálogo 
+	- Podem ser projetados como sistemas mono-usuários ou multiusuários (usando conceitos de multiprogramação e time-sharing)
 
 -  **SO de tempo real**
+	- Usados para servir aplicações que atendem processos externos, e que possuem tempo de resposta limitados
+	- Geralmente sinais de interrupções comandam a atenção do sistema
+	- Geralmente são projetados para uma aplicação específica
 
 ## Classificação quanto ao *Porte*
 
-## Estrutura do SO
+- S.O. de Computadores de Grande Porte 
+- S.O. de Servidores 
+- S.O. de Multiprocessadores 
+- S.O. de Computadores Pessoais 
+- S.O. de Tempo Real 
+- S.O. de Embarcados 
+- S.O. de Cartões Inteligentes
 
