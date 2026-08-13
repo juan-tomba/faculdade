@@ -35,7 +35,7 @@ entre o usuário e esses dispositivos**
 	-  Maior portabilidade
 	-  Maior dedicação a problemas de alto nível
 
--  *Analogias*
+-  *Analogias para o SO*
 	-  É um **fiscal** que controla os usuários
 	-  É um **juiz** que aloca corretamente os recursos ao hardware
 	-  **Ilusionista** - fornece abstrações limpas e fáceis de usar recursos físicos
@@ -106,3 +106,15 @@ Como **Máquina Estendida**
 - S.O. de Embarcados 
 - S.O. de Cartões Inteligentes
 
+## Estrutura do SO
+### Estrutura Monolítica
+
+### Estrutura do MicroKernel
+
+### Monolítica x MicroKernel
+
+### Máquina Virtual (VM)
+
+-  Virtual Machine (VM)
+-  Cada VM é independente das demais, é possível que tenha seu próprio SO
+- Este nível  cria diversas máquinas virtuais independentes
