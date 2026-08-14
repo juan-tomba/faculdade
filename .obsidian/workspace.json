@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+                "file": "semestre_4/Algoritmos Avançados e Aplicações/aula01/aula01.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Processo"
+              "title": "aula01"
             }
           }
         ]
@@ -187,8 +187,8 @@
   },
   "active": "5603f43a6423ffb6",
   "lastOpenFiles": [
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
     "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
     "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
     "semestre_4/Sistemas Operacionais I/aula03",
     "semestre_4/Estatística/aula01/Probabilidade.md",
