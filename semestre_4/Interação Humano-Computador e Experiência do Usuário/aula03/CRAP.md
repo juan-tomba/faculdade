@@ -1,0 +1,8 @@
+- WILLIAMS, Robin. *Design Para Quem Não é Designer*: Princípios de Design e Tipografia Para Iniciantes. 2013.
+	- Contraste
+	- Repetição
+	- Alinhamento
+	- Proximidade
+-  Teoria das cores
+- *Refazer linha do tempo seguindo os princípios de design apresentados em sala*
+	-  Citar e justificar mudanças realizadas!!!!!

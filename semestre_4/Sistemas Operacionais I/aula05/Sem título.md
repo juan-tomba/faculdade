@@ -1,0 +1,2 @@
+- thread tem pedaços de um processo
+- *LISTA* exemplo ta em 2.6 32 bits, mas é pra fazer em 64 bits

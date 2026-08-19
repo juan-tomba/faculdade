@@ -4,49 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "cf41f7d0dd1f1cb2",
+        "id": "1e836a0161fbf9aa",
         "type": "tabs",
         "children": [
           {
-            "id": "d704f025eddc555b",
+            "id": "348a98d14ad03b8b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
+                "file": "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sistemas Operacionais"
+              "title": "Nossos Processos"
             }
           },
           {
-            "id": "0ad151353e0b08b6",
+            "id": "72885dd33196ee09",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+                "file": "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Processo"
-            }
-          },
-          {
-            "id": "ddd478459a4c5bd5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Processo"
+              "title": "Sem título"
             }
           }
         ],
@@ -214,18 +200,24 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "0ad151353e0b08b6",
+  "active": "72885dd33196ee09",
   "lastOpenFiles": [
+    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
+    "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+    "semestre_4/Sistemas Operacionais I/aula05",
+    "semestre_4/Sistemas Open-Source/aula01/Introdução.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03",
+    "semestre_4/Sistemas Operacionais I/aula04",
     "semestre_4/Sistemas Operacionais I/aula02/Resumida do claude.md",
     "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
-    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Estatística/aula01/Probabilidade.md",
     "semestre_4/Estatística/aula02/Probabilidade.2.md",
     "semestre_4/Estatística/aula02",
     "semestre_4/Algoritmos Avançados e Aplicações/aula01/aula01.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
     "semestre_4/Sistemas Operacionais I/aula03",
-    "semestre_4/Sistemas Open-Source/aula01/Introdução.md",
     "semestre_4/Sistemas Open-Source/aula01",
     "semestre_4/Sistemas Open-Source",
     "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
@@ -235,9 +227,6 @@
     "semestre_4/Estatística",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Pasted image 20260810164641.png",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02",
-    "semestre_4/Algoritmos Avançados e Aplicações/Exercícios/v0",
-    "semestre_4/Algoritmos Avançados e Aplicações/Exercícios/exer00.cpp",
-    "semestre_4/Algoritmos Avançados e Aplicações/Exercícios",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula01/Gerações de interfaces computacionais.md",
     "semestre_4/Sistemas Operacionais I/Exercícios/aula00.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula00/Introdução.md",
@@ -250,9 +239,6 @@
     "semestre_3/Programação Funcional/Resumo prova.md",
     "semestre_3/Modelagem Computacional em Grafos/Resumo Algoritmos P2.md",
     "semestre_3/Organização e Arquitetura de computadores/aula24/Módulos de Entrada e Saída.md",
-    "semestre_3/Organização e Arquitetura de computadores/aula22/Funções de mapeamento.md",
-    "semestre_3/Modelagem Computacional em Grafos/aula08/Fluxo Máximo e Ford-Fulkerson.md",
-    "semestre_3/Modelagem Computacional em Grafos/aula02/Definições.md",
     "semestre_3/Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png"
   ]
 }
