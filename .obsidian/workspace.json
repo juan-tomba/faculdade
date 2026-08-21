@@ -4,35 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "1e836a0161fbf9aa",
+        "id": "e1405641b6b80430",
         "type": "tabs",
         "children": [
           {
-            "id": "348a98d14ad03b8b",
+            "id": "25faf74df576b288",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Nossos Processos"
+              "title": "CRAP"
             }
           },
           {
-            "id": "72885dd33196ee09",
+            "id": "6d71dcf58c7b3ed1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
+                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sem título"
+              "title": "Design"
             }
           }
         ],
@@ -200,14 +200,16 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "72885dd33196ee09",
+  "active": "cdf9ec72ae3916ac",
   "lastOpenFiles": [
-    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04",
     "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
+    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
     "semestre_4/Sistemas Operacionais I/aula05",
     "semestre_4/Sistemas Open-Source/aula01/Introdução.md",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03",
     "semestre_4/Sistemas Operacionais I/aula04",
     "semestre_4/Sistemas Operacionais I/aula02/Resumida do claude.md",
@@ -226,7 +228,6 @@
     "semestre_4/Estatística/aula01",
     "semestre_4/Estatística",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Pasted image 20260810164641.png",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula01/Gerações de interfaces computacionais.md",
     "semestre_4/Sistemas Operacionais I/Exercícios/aula00.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula00/Introdução.md",
@@ -238,7 +239,6 @@
     "semestre_3/Programação Funcional/Gabarito banco de questoes.md",
     "semestre_3/Programação Funcional/Resumo prova.md",
     "semestre_3/Modelagem Computacional em Grafos/Resumo Algoritmos P2.md",
-    "semestre_3/Organização e Arquitetura de computadores/aula24/Módulos de Entrada e Saída.md",
     "semestre_3/Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png"
   ]
 }

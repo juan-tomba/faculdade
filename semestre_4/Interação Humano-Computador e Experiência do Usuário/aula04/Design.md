@@ -1,0 +1,7 @@
+-  Engenharia de Usabilidade de Nielsen
+	- 1. Conheça seu usuário
+	- 2. Realize uma análise competitiva: examinar produtos com funcionalidades semelhantes ou complementares
+	- 3. Defina as metas de usabilidade: definir fatores de qualidade de uso que devem ser priorizados
+	- 4. Faça designs paralelos: elaborar diferentes alternativas de design
+	- 5. Adote o Design Participativo: contato contínuo com usuários-alvo
+	- 
