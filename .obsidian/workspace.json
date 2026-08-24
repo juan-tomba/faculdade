@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
-                "mode": "source",
+                "file": "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Design"
+              "title": "Nossos Processos"
             }
           }
         ],
@@ -200,14 +200,14 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "cdf9ec72ae3916ac",
+  "active": "6d71dcf58c7b3ed1",
   "lastOpenFiles": [
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04",
-    "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
     "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
     "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04",
     "semestre_4/Sistemas Operacionais I/aula05",
     "semestre_4/Sistemas Open-Source/aula01/Introdução.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03",
