@@ -4,39 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "e1405641b6b80430",
+        "id": "9600423a48104e82",
         "type": "tabs",
         "children": [
           {
-            "id": "25faf74df576b288",
+            "id": "e64e6d29953a3858",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
+                "file": "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CRAP"
+              "title": "Sem título"
             }
           },
           {
-            "id": "6d71dcf58c7b3ed1",
+            "id": "358709f3e87ff4f9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
-                "mode": "preview",
+                "file": "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Nossos Processos"
+              "title": "Thread"
+            }
+          },
+          {
+            "id": "807a48cb1741fd1f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05/Sem título.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Sem título"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -200,12 +214,17 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "6d71dcf58c7b3ed1",
+  "active": "cdf9ec72ae3916ac",
   "lastOpenFiles": [
-    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05/Sem título.md",
+    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05",
     "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
-    "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+    "semestre_4/Sistemas Operacionais I/aula06/Thread",
+    "semestre_4/Sistemas Operacionais I/aula06",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
+    "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04",
     "semestre_4/Sistemas Operacionais I/aula05",
@@ -221,12 +240,9 @@
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
     "semestre_4/Sistemas Operacionais I/aula03",
     "semestre_4/Sistemas Open-Source/aula01",
-    "semestre_4/Sistemas Open-Source",
     "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
     "semestre_4/Análise e Projeto Orientado a Objetos/aula00/Introdução.md",
     "semestre_4/Sistemas Operacionais I/aula01/Contexto Histórico.md",
-    "semestre_4/Estatística/aula01",
-    "semestre_4/Estatística",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Pasted image 20260810164641.png",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula01/Gerações de interfaces computacionais.md",
     "semestre_4/Sistemas Operacionais I/Exercícios/aula00.md",
@@ -237,8 +253,6 @@
     "semestre_3/Organização de arquivos/Aula09/Remoção árvore-B.md",
     "semestre_3/Organização de arquivos/Aula10/Ordenação interna e externa.md",
     "semestre_3/Programação Funcional/Gabarito banco de questoes.md",
-    "semestre_3/Programação Funcional/Resumo prova.md",
-    "semestre_3/Modelagem Computacional em Grafos/Resumo Algoritmos P2.md",
     "semestre_3/Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png"
   ]
 }
