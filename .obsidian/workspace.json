@@ -4,53 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "9600423a48104e82",
+        "id": "c5d48dda5108cdb2",
         "type": "tabs",
         "children": [
           {
-            "id": "e64e6d29953a3858",
+            "id": "7049275c59e6f3f3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
+                "file": "semestre_2/icc2/monitoria/Analise de algoritmos (parte 1).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Sem título"
+              "title": "Analise de algoritmos (parte 1)"
             }
           },
           {
-            "id": "358709f3e87ff4f9",
+            "id": "b041bd91bf1bc48f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
+                "file": "semestre_2/icc2/monitoria/Análise de algoritmos (parte 2).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Thread"
-            }
-          },
-          {
-            "id": "807a48cb1741fd1f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05/Sem título.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Sem título"
+              "title": "Análise de algoritmos (parte 2)"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -214,10 +200,17 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "cdf9ec72ae3916ac",
+  "active": "b041bd91bf1bc48f",
   "lastOpenFiles": [
+    "semestre_2/icc2/monitoria/gabarito lista 1.pdf",
+    "semestre_2/icc2/monitoria/Lista_1_monitoria_icc2.pdf",
+    "semestre_2/icc2/monitoria/Analise de algoritmos (parte 1).md",
+    "semestre_2/icc2/monitoria/Análise de algoritmos (parte 2).md",
+    "semestre_4/Sistemas Operacionais I/aula07/Threads.md",
+    "semestre_2/icc2/monitoria",
     "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05/Sem título.md",
+    "semestre_4/Sistemas Operacionais I/aula07",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05",
     "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
     "semestre_4/Sistemas Operacionais I/aula06/Thread",
@@ -235,11 +228,8 @@
     "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
     "semestre_4/Estatística/aula01/Probabilidade.md",
     "semestre_4/Estatística/aula02/Probabilidade.2.md",
-    "semestre_4/Estatística/aula02",
     "semestre_4/Algoritmos Avançados e Aplicações/aula01/aula01.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
-    "semestre_4/Sistemas Operacionais I/aula03",
-    "semestre_4/Sistemas Open-Source/aula01",
     "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
     "semestre_4/Análise e Projeto Orientado a Objetos/aula00/Introdução.md",
     "semestre_4/Sistemas Operacionais I/aula01/Contexto Histórico.md",
@@ -249,10 +239,6 @@
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula00/Introdução.md",
     "random/Boost 2026.2.md",
     "semestre_3/Organização de arquivos/Aula07/Árvores-B.md",
-    "semestre_3/Organização de arquivos/Aula08/Árvore-B continuação.md",
-    "semestre_3/Organização de arquivos/Aula09/Remoção árvore-B.md",
-    "semestre_3/Organização de arquivos/Aula10/Ordenação interna e externa.md",
-    "semestre_3/Programação Funcional/Gabarito banco de questoes.md",
     "semestre_3/Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png"
   ]
 }

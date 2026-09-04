@@ -1,0 +1,3 @@
+- Os threads NÃO saem na mesma ordem que foram criados (a primeira pode acabar mais rapido ou não)
+- Se executarmos o programa novamente, o RESULTADO PODE MUDAR
+- 
