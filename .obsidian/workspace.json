@@ -4,35 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "c5d48dda5108cdb2",
+        "id": "aed0aeaaa1a0ee9e",
         "type": "tabs",
         "children": [
           {
-            "id": "7049275c59e6f3f3",
+            "id": "27a9b908482197da",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_2/icc2/monitoria/Analise de algoritmos (parte 1).md",
-                "mode": "source",
+                "file": "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Analise de algoritmos (parte 1)"
+              "title": "Nossos Processos"
             }
           },
           {
-            "id": "b041bd91bf1bc48f",
+            "id": "743d67b2b5cc027d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_2/icc2/monitoria/Análise de algoritmos (parte 2).md",
-                "mode": "source",
+                "file": "semestre_4/Sistemas Operacionais I/aula07/Threads.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Análise de algoritmos (parte 2)"
+              "title": "Threads"
             }
           }
         ],
@@ -200,39 +200,39 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "b041bd91bf1bc48f",
+  "active": "743d67b2b5cc027d",
   "lastOpenFiles": [
+    "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
+    "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
+    "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
+    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+    "semestre_4/Sistemas Operacionais I/aula01/Contexto Histórico.md",
+    "semestre_4/Sistemas Operacionais I/aula02/Resumida do claude.md",
+    "semestre_4/Sistemas Operacionais I/aula09/Deadlocks.md",
+    "semestre_4/Sistemas Operacionais I/aula09",
+    "semestre_4/Sistemas Operacionais I/aula08",
+    "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
+    "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
+    "semestre_2/icc2/monitoria/Análise de algoritmos (parte 2).md",
     "semestre_2/icc2/monitoria/gabarito lista 1.pdf",
     "semestre_2/icc2/monitoria/Lista_1_monitoria_icc2.pdf",
     "semestre_2/icc2/monitoria/Analise de algoritmos (parte 1).md",
-    "semestre_2/icc2/monitoria/Análise de algoritmos (parte 2).md",
     "semestre_4/Sistemas Operacionais I/aula07/Threads.md",
     "semestre_2/icc2/monitoria",
-    "semestre_4/Sistemas Operacionais I/aula06/Thread.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05/Sem título.md",
     "semestre_4/Sistemas Operacionais I/aula07",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula05",
-    "semestre_4/Sistemas Operacionais I/aula05/Sem título.md",
     "semestre_4/Sistemas Operacionais I/aula06/Thread",
     "semestre_4/Sistemas Operacionais I/aula06",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04/Design.md",
-    "semestre_4/Sistemas Operacionais I/aula04/Nossos Processos.md",
-    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03/CRAP.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula04",
-    "semestre_4/Sistemas Operacionais I/aula05",
     "semestre_4/Sistemas Open-Source/aula01/Introdução.md",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula03",
-    "semestre_4/Sistemas Operacionais I/aula04",
-    "semestre_4/Sistemas Operacionais I/aula02/Resumida do claude.md",
-    "semestre_4/Sistemas Operacionais I/aula02/Sistemas Operacionais.md",
     "semestre_4/Estatística/aula01/Probabilidade.md",
     "semestre_4/Estatística/aula02/Probabilidade.2.md",
     "semestre_4/Algoritmos Avançados e Aplicações/aula01/aula01.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
-    "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
     "semestre_4/Análise e Projeto Orientado a Objetos/aula00/Introdução.md",
-    "semestre_4/Sistemas Operacionais I/aula01/Contexto Histórico.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Pasted image 20260810164641.png",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula01/Gerações de interfaces computacionais.md",
     "semestre_4/Sistemas Operacionais I/Exercícios/aula00.md",
