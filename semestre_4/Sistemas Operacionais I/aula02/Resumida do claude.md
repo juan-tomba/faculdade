@@ -70,7 +70,7 @@ Exemplo — E/S de disco (leitura/escrita):
 
 ### Como Gerenciador de Recursos/Cola (bottom-up)
 
-Gerencia todos os dispositivos e recursos do computador.
+ — é exatamente essa visãoGerencia todos os dispositivos e recursos do computador.
 
 - Ex.: dois processos disputando a mesma impressora → o S.O. estabelece a ordem
 - Uso do HD, uso da memória
