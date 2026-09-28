@@ -50,32 +50,32 @@
 ### Estados de um processos
 
 - *Indefinido* - Desconhecido ao SO: antes de criado e depois de destruído
-- *Bloqueado* - 
-- *Pronto* -
-- *Execução* - 
+- *Bloqueado* - Parado à espera de um evento
+- *Pronto* - Só não executa porque a CPU está com outro processo
+- *Execução* - Andamento progressivo normal, usando a CPU
 
 ## Ações de transição (6)
 
-- Criar
-- Acordar
-- Despachar
-- Bloquear
-- Preempção (suspender)
-- Destruir
+- *Criar* - colocar o processo na memória, tornando-o conhecido ao sistema;
+- *Acordar* - liberar o andamento quando ocorre um evento: bloqueado → pronto;
+- *Despachar* - retirar da fila e colocar em execução: pronto → executando;
+- *Bloquear* - parar para esperar um evento: executando → bloqueado;
+- *Preempção (suspender)* - parar por motivos alheios ao processo, como a comutação forçada de fatias de tempo: executando → pronto;
+- *Destruir* - liberar a memória, tornando o processo desconhecido ao sistema.
 
 ## Eventos que causam a criação
 
 - *Inicialização do sistema*
-- a
-- a
-- a
+- *Chamada ao sistema de criação por um processo em execução;*
+- *Requisição de usuário*
+- *Início de um job em lote*
 
-## COndições de término
+## Condições de término
 
-- *Saída normal* (voluntária) - 
-- a
-- a
-- a
+- *Saída normal* (voluntária) - exit / ExitProcess;
+- *Saída por erro* (voluntária) - ex.: gcc arquivo.c inexistente;
+- *Erro fatal* (involuntária) — divisão por zero, memória inexistente, instrução ilegal;
+- *Destruído por outro processo* (involuntária) — kill / TerminateProcess.
 
 ## Hierarquia de processos
 
@@ -94,15 +94,15 @@
 - *Preemptivo x Não Preemptivo*
 - **Quando escalonar**
 	- um novo processo é criado
-	- a
-	- a
-	- a
+	- Um processo termina e um pronto deve executar;
+	- Um processo é bloqueado (semáforo, E/S);
+	- Ocorre interrupção de E/S (executar quem esperava, continuar o corrente ou executar um terceiro).
 
 ## Critérios de escalonamento
 
-- *Justiça*
-- *Balanceamento*
-- *Políticas do sistema*
+- *Justiça* - parcela justa de CPU para cada processo;
+- *Balanceamento* - diminuir a ociosidade do sistema;
+- *Políticas do sistema* - prioridade de processos.
 
 - **TEMPO DE TURNAROUND**
 	- Tfinal - Tchegada
@@ -110,9 +110,11 @@
 
 ## Algoritmos para sistema Batch 
 
-- **FCFS / FIFO**
+- **FCFS / FIFO** - Ordem de requisição; fácil de programar. Ineficiente com processos demorados
 - **SJF** - menores primeiros (que ja chegaram)
 - **SRTN** - Menor tempo restante possível (meio dinamico), suspende o atual se o novo for menor, meior ruim pq fica trocando de processo (**TEMPO DE CHAVEAMENTO**)
+
+- *tempo de chaveamento (context switch)* é o tempo gasto pelo SO para salvar o estado do processo em execução e carregar o estado do próximo processo a rodar. É overhead puro — tempo em que a CPU não faz trabalho útil.
 
 ## Algoritmos para sistema Interativos
 
