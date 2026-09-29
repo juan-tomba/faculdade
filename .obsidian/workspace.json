@@ -4,63 +4,63 @@
     "type": "split",
     "children": [
       {
-        "id": "f4e39441fd4bc32d",
+        "id": "5095c4b6c7462e7d",
         "type": "tabs",
         "children": [
           {
-            "id": "07dacf8d1bca8cd8",
+            "id": "3f80f3f966075aec",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula07/Comunicação entre processos - parte 1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Comunicação entre processos - parte 1"
-            }
-          },
-          {
-            "id": "6ade5bdad465be65",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula09/Deadlocks.md",
+                "file": "semestre_4/Álgebra LInear e Aplicações/Resumo GA.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Deadlocks"
+              "title": "Resumo GA"
             }
           },
           {
-            "id": "9a28a06e818a95a1",
+            "id": "ee5d0233b74344a3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "semestre_4/Sistemas Operacionais I/Monitoria SO P1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Monitoria SO P1"
-            }
-          },
-          {
-            "id": "42cc557fca66a6ba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
+                "file": "semestre_4/Álgebra LInear e Aplicações/Resumo matrizes e Decomposição LU.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Processo"
+              "title": "Resumo matrizes e Decomposição LU"
+            }
+          },
+          {
+            "id": "1adbd3fc0cf38640",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "semestre_4/Álgebra LInear e Aplicações/Resumo Espaço vetorial.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Resumo Espaço vetorial"
+            }
+          },
+          {
+            "id": "c4587a10db1599b6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "semestre_4/Álgebra LInear e Aplicações/Resumo matrizes e Decomposição LU.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Resumo matrizes e Decomposição LU"
             }
           }
         ],
@@ -228,14 +228,18 @@
       "bases:Criar nova base": false
     }
   },
-  "active": "42cc557fca66a6ba",
+  "active": "c4587a10db1599b6",
   "lastOpenFiles": [
+    "semestre_4/Álgebra LInear e Aplicações/Resumo GA.md",
+    "semestre_4/Álgebra LInear e Aplicações/Guia conicas.md",
+    "semestre_4/Álgebra LInear e Aplicações/Resumo Espaço vetorial.md",
+    "semestre_4/Álgebra LInear e Aplicações/Resumo matrizes e Decomposição LU.md",
+    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Sistemas Operacionais I/aula02/Resumida do claude.md",
     "semestre_4/Sistemas Operacionais I/Monitoria SO P1.md",
     "semestre_4/Sistemas Operacionais I/aula07/Comunicação entre processos - parte 1.md",
     "semestre_4/Sistemas Operacionais I/aula08/Comunicação entre processos - parte 2.md",
     "semestre_4/Sistemas Operacionais I/Importante durante lista.md",
-    "semestre_4/Sistemas Operacionais I/aula03/Processo.md",
     "semestre_4/Sistemas Operacionais I/aula09/Deadlocks.md",
     "semestre_4/Sistemas Operacionais I/aula06/Threads - parte 2.md",
     "semestre_4/Sistemas Operacionais I/aula05/Threads - parte 1.md",
@@ -262,11 +266,7 @@
     "semestre_4/Estatística/aula01/Probabilidade.md",
     "semestre_4/Estatística/aula02/Probabilidade.2.md",
     "semestre_4/Algoritmos Avançados e Aplicações/aula01/aula01.md",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Interfaces.md",
-    "semestre_4/Sistemas Operacionais I/aula00/Introdução.md",
-    "semestre_4/Análise e Projeto Orientado a Objetos/aula00/Introdução.md",
     "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula02/Pasted image 20260810164641.png",
-    "semestre_4/Interação Humano-Computador e Experiência do Usuário/aula01/Gerações de interfaces computacionais.md",
     "semestre_3/Modelagem Computacional em Grafos/aula07/Pasted image 20260609133624.png"
   ]
 }
