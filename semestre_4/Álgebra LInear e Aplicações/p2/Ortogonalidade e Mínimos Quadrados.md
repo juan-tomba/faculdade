@@ -39,7 +39,7 @@ Em $\mathbb{R}^3$:
 
 Se $A\mathbf{x}=\mathbf{0}$, cada entrada do produto é o produto escalar de uma linha de $A$ com $\mathbf{x}$:
 
-$$A\mathbf{x}=\begin{bmatrix}\mathbf{a}_1^\top\mathbf{x}\\vdots\\mathbf{a}_m^\top\mathbf{x}\end{bmatrix}=\begin{bmatrix}0\\vdots\0\end{bmatrix}$$
+$$ A\mathbf{x}=\begin{bmatrix} \mathbf{a}_1^\top\mathbf{x} \cr \vdots \cr \mathbf{a}_m^\top\mathbf{x} \end{bmatrix}=\begin{bmatrix} 0 \cr \vdots \cr 0 \end{bmatrix} $$
 
 Então $\mathbf{x}$ é ortogonal a **todas as linhas** de $A$, e portanto a qualquer combinação delas, ou seja, a todo o espaço linha.
 
@@ -99,7 +99,7 @@ $$\mathbf{x}=\underbrace{\mathbf{u}}_{\in C(A^\top)}+\underbrace{\mathbf{v}}_{\i
 
 Uma base $\mathbf{q}_1,\dots,\mathbf{q}_k$ é **ortonormal** quando os vetores são ortogonais entre si e têm norma 1:
 
-$$\mathbf{q}_i^\top\mathbf{q}_j=\begin{cases}0 & i\neq j\1 & i=j\end{cases}$$
+$$ \mathbf{q}_i^\top\mathbf{q}_j=\begin{cases} 0 & i\neq j \cr 1 & i=j \end{cases} $$
 
 Uma base **ortogonal** dividida pelas normas vira **ortonormal**.
 
@@ -160,7 +160,7 @@ $$\mathbf{u}_i=r_{1i}\mathbf{q}_1+\cdots+r_{ii}\mathbf{q}_i$$
 
 Em forma de matriz:
 
-$$\underbrace{\begin{bmatrix}|&&|\\mathbf{u}_1&\cdots&\mathbf{u}_k\|&&|\end{bmatrix}}_{A}=\underbrace{\begin{bmatrix}|&&|\\mathbf{q}_1&\cdots&\mathbf{q}_k\|&&|\end{bmatrix}}_{Q}\underbrace{\begin{bmatrix}r_{11}&r_{12}&\cdots&r_{1k}\0&r_{22}&\cdots&r_{2k}\\vdots&&\ddots&\vdots\0&0&\cdots&r_{kk}\end{bmatrix}}_{R}$$
+$$ \underbrace{\begin{bmatrix} |&&| \cr \mathbf{u}_1&\cdots&\mathbf{u}_k \cr |&&| \end{bmatrix}}_{A}=\underbrace{\begin{bmatrix} |&&| \cr \mathbf{q}_1&\cdots&\mathbf{q}_k \cr |&&| \end{bmatrix}}_{Q}\underbrace{\begin{bmatrix} r_{11}&r_{12}&\cdots&r_{1k} \cr 0&r_{22}&\cdots&r_{2k} \cr \vdots&&\ddots&\vdots \cr 0&0&\cdots&r_{kk} \end{bmatrix}}_{R} $$
 
 - **$Q$** tem colunas ortonormais e o **mesmo espaço coluna** de $A$.
 - **$R$** é **triangular superior**. Fora da diagonal, $r_{ji}=\mathbf{q}_j^\top\mathbf{u}_i$. Na diagonal, $r_{ii}=|\tilde{\mathbf{q}}_i|$.
@@ -245,7 +245,7 @@ Temos amostras $(t_i, f(t_i))$, $i=1,\dots,n$, e queremos uma função que passe
 
 Queremos $a_1+a_2t_i\approx f(t_i)$ para todo $i$. Em forma de matriz:
 
-$$\underbrace{\begin{bmatrix}1&t_1\1&t_2\\vdots&\vdots\1&t_n\end{bmatrix}}_{A}\underbrace{\begin{bmatrix}a_1\a_2\end{bmatrix}}_{\boldsymbol\alpha}\approx\underbrace{\begin{bmatrix}f(t_1)\\vdots\f(t_n)\end{bmatrix}}_{\mathbf{f}}$$
+$$ \underbrace{\begin{bmatrix} 1&t_1 \cr 1&t_2 \cr \vdots&\vdots \cr 1&t_n \end{bmatrix}}_{A}\underbrace{\begin{bmatrix} a_1 \cr a_2 \end{bmatrix}}_{\boldsymbol\alpha}\approx\underbrace{\begin{bmatrix} f(t_1) \cr \vdots \cr f(t_n) \end{bmatrix}}_{\mathbf{f}} $$
 
 São $n$ equações e só 2 incógnitas, então não há solução exata. Resolve-se a equação normal $A^\top A\boldsymbol\alpha=A^\top\mathbf{f}$.
 
